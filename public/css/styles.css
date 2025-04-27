@@ -237,14 +237,20 @@
 }
 .btn.btn-primary {
     background: rgb(81, 81, 229);
+    justify-content: center;
+    justify-items: center;
+    
 }
 .btn.btn-primary:hover {
     background: rgb(23, 23, 225);
+    justify-content: center;
+    justify-items: center;
 }
 
-
-
-
+.dropdown-divider {
+    justify-content: center;
+    display: flex;
+}
 
 
 .home-input {
