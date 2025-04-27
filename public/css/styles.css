@@ -5,7 +5,7 @@
 }
 
 .button button {
-    background: rgb(81, 81, 229); /* El color ahora está en el botón */
+    background: rgb(204, 34, 34); /* El color ahora está en el botón */
     color: white; /* Opcional: para que el texto se vea blanco */
     padding: 10px 20px; /* Opcional: tamaño del botón */
     border: none; /* Opcional: saca el borde gris feo */
