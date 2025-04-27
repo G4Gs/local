@@ -51,9 +51,9 @@
                 <option value="4" {% if record.new_field == '4' %}selected{% endif %}>4 - Formulario de Asignaturas cargado</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class:"button">Guardar Cambios</button>
         {# reescribir logica para aidar la inscripcion arriba corroborar exitencia de campos #}
-        <button type="button" class="btn btn-primary"
+        <button type="button" class:"button"
             onclick="openModalPersona(
                 '{{ record.persona_nombre }}', 
                 '{{ record.persona_apellido }}', 

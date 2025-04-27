@@ -27,12 +27,13 @@
 
 				<!-- Sidebar - Brand -->
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_home')}}">
-					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
-					</div>
-					<div class="sidebar-brand-text mx-3">Instituto Local
-					</div>
-				</a>
+    <div class="sidebar-brand-icon">
+<img src="{{ asset('img/ISFT-12.jpg') }}" alt="Logo" style="width: 40px; height: 40px; border-radius: 50% !important; object-fit: cover;">
+
+    </div>
+    <div class="sidebar-brand-text mx-3">Instituto Local</div>
+</a>
+
 
 				<!-- Divider -->
 				<hr
@@ -305,7 +306,7 @@
 										Activity Log
 									</a>
 									<div class="dropdown-divider"></div>
-									<a class="btn btn-primary" href="{{ path('app_logout')}}">Salir</a>
+									<a class="button" href="{{ path('app_logout')}}">Salir</a>
 								</div>
 							</li>
 

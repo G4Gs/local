@@ -3,22 +3,20 @@
 {% block title %}Pre Inscriptos{% endblock %}
 
 {% block body %}
-    {# controlo en flujo de la sesion ahora deshabilitado #}
-        {% if dni is not null %}
-            <p>DNI encontrado: {{ dni }}</p>
-        {% else %}
-            <p>No hay un DNI en la sesión.</p>
-        {% endif %}
-
-    
+    {% if dni is not null %}
+        <p>DNI encontrado: {{ dni }}</p>
+    {% else %}
+        <p>No hay un DNI en la sesión.</p>
+    {% endif %}
 
     <h1 class="datos-filtered" id="titulo-pre">Pre Inscriptos</h1>
     <h1 class="datos-filtered">Estudiantes: </h1>
 
     <div id="contenedor-pre">
-        <div id="contenedor-pre1">
+        <div id="contenedor-pre1" style="display: flex; justify-content: flex-end;">
             <form action="{{ path('app_vistaspreinscriptos_clear_files') }}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas limpiar los archivos CSV? Esto no se puede deshacer.');">
-                <button type="submit" class="btn btn-danger mt-2">Limpiar Registros</button>
+                <button type="submit" class="btn btn-primary mt-2">Limpiar Registros</button>
+
             </form>
         </div>
     </div>
@@ -50,7 +48,7 @@
                     </tr>
                     <tr>
                         <th>Dni_Pasaporte</th>
-                        <th>Apellido <button onclick="sortTable()">🔽</button></th>
+                        <th>Apellido <button class:"button" onclick="sortTable()">🔽</button></th>
                         <th>Nombre</th>
                         <th>Tecnicatura</th>
                         <th>Turno</th>
@@ -82,15 +80,15 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <button id="editarcsv_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit2', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">1</button>
-                                <button id="editarcsv2_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit3', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">2</button>
-                                <button id="editarcsv3_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit4', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">3</button>
-                                <button id="editarcsv4_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit5', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">4</button>
-                                <button onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit', { id: row.id }) }}'" class="btn btn-primary">Editar/Inscribir</button>
-                              {#  <button onclick="openModalPersona('{{ row.persona_nombre }}', '{{ row.persona_apellido }}', '{{ row.fecha_nacimiento }}', '{{ row.dni_pasaporte }}', '{{ row.genero }}', '{{ row.email }}', '{{ row.telefono }}', '{{ row.partido }}', '{{ row.calle }}', '{{ row.numero }}', '{{ row.piso }}', '{{ row.departamento }}', '{{ row.pasillo }}', '{{ row.pais_descripcion }}', '{{ row.localidad_nombre }}',  '{{ row.id }}')" class="btn-primary">Inscribir</button>#}
-                                <button id="crearAlumno_{{ row.dni_pasaporte }}" onclick="openModalAlumno('{{ row.dni_pasaporte }}', '{{ row.titulo_sec }}', '{{ row.escuela_sec }}', '{{ row.anio_egreso }}', '{{ row.persona_nombre }}', '{{ row.persona_apellido }}',  '{{ row.id }}')" class="btn-primary" style="display: none;">Crear alumno</button>
-                                <button id="crearCarrera_{{ row.dni_pasaporte }}"  onclick="openModalInsertarTecnicatura('{{ row.dni_pasaporte }}', '{{ row.tecnicatura_resolucion}}', '{{ row.tecnicatura_nombre}}', '{{ row.persona_nombre }}', '{{ row.persona_apellido }}',  '{{ row.id }}')" class="btn-primary" style="display: none;">Insertar en Carrera</button>
-                                <button id="crearAsignaturas_{{ row.dni_pasaporte }}"  onclick="openModalInsertarAsignaturas('{{ row.dni_pasaporte }}', '{{ row.tecnicatura_resolucion}}', '{{ row.id }}')" class="btn-primary" style="display: none;">Insertar en Asignaturas</button>
+                                <button class:"button" id="editarcsv_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit2', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">1</button>
+                                <button class:"button" id="editarcsv2_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit3', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">2</button>
+                                <button class:"button"  id="editarcsv3_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit4', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">3</button>
+                                <buttonclass:"button" id="editarcsv4_{{ row.dni_pasaporte }}" onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit5', { id: row.id }) }}'" class="btn btn-primary" style="display: none;">4</buttonclass:>
+                                <button class:"button"onclick="window.location.href='{{ path('app_vistaspreinscriptos_edit', { id: row.id }) }}'" class="btn btn-primary">Editar/Inscribir</button>
+                              {#  <button class:"button" onclick="openModalPersona('{{ row.persona_nombre }}', '{{ row.persona_apellido }}', '{{ row.fecha_nacimiento }}', '{{ row.dni_pasaporte }}', '{{ row.genero }}', '{{ row.email }}', '{{ row.telefono }}', '{{ row.partido }}', '{{ row.calle }}', '{{ row.numero }}', '{{ row.piso }}', '{{ row.departamento }}', '{{ row.pasillo }}', '{{ row.pais_descripcion }}', '{{ row.localidad_nombre }}',  '{{ row.id }}')" class="btn-primary">Inscribir</button>#}
+                                <button class:"button" id="crearAlumno_{{ row.dni_pasaporte }}" onclick="openModalAlumno('{{ row.dni_pasaporte }}', '{{ row.titulo_sec }}', '{{ row.escuela_sec }}', '{{ row.anio_egreso }}', '{{ row.persona_nombre }}', '{{ row.persona_apellido }}',  '{{ row.id }}')" class="btn-primary" style="display: none;">Crear alumno</button>
+                                <button class:"button"id="crearCarrera_{{ row.dni_pasaporte }}"  onclick="openModalInsertarTecnicatura('{{ row.dni_pasaporte }}', '{{ row.tecnicatura_resolucion}}', '{{ row.tecnicatura_nombre}}', '{{ row.persona_nombre }}', '{{ row.persona_apellido }}',  '{{ row.id }}')" class="btn-primary" style="display: none;">Insertar en Carrera</button>
+                                <button class:"button"id="crearAsignaturas_{{ row.dni_pasaporte }}"  onclick="openModalInsertarAsignaturas('{{ row.dni_pasaporte }}', '{{ row.tecnicatura_resolucion}}', '{{ row.id }}')" class="btn-primary" style="display: none;">Insertar en Asignaturas</button>
                             </td>
                         </tr>
                     {% endfor %}
