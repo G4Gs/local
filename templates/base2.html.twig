@@ -59,13 +59,6 @@
 				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') %}
 				<!-- Nav Item - Charts -->
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_user_index')}}">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Usuarios</span>
-					</a>
-				</li>
-
-				<li class="nav-item">
 					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Central Tecnicaturas y Asignaturas</span>
@@ -78,17 +71,24 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Central Finales</span>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Central Recursos Humanos</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
+					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Finales</span>
+						<span>Usuarios</span>
 					</a>
 				</li>
+
 				{% endif %}
 
 				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') or is_granted ('ROLE_ESTUDIANTE')%}	
@@ -108,27 +108,6 @@
 					</a>
 				</li>
 				{% endif %}
-
-				
-				<!-- Nav Item - Pages Collapse Menu -->
-				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
-				<li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Personas</span>
-					</a>
-					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<h6 class="collapse-header">Datos de Alumnos</h6>
-							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
-							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
-							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
-						
-						</div>
-					</div>
-				</li>
-				{% endif %}
-
 
 
 				<!-- Nav Item - Charts -->
@@ -163,6 +142,28 @@
 					</div>
 				</li>
 				{% endif %}
+				
+				<!-- Nav Item - Pages Collapse Menu -->
+				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Personas</span>
+					</a>
+					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Datos de Alumnos</h6>
+							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
+							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
+							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
+						
+						</div>
+					</div>
+				</li>
+				{% endif %}
+
+
+
 				
 
 				<!-- Nav Item - Pages Collapse Menu -->
