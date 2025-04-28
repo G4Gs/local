@@ -454,20 +454,20 @@
             <tbody>
                 <tr>
                     <td>
-                        <button class="btn-primary" onclick="showTable('tablapersonas')">Ver</button>
-                        <button onclick="openModal1()" class="btn-primary">Crear</button>
+                        <button class:"button" onclick="showTable('tablapersonas')">Ver</button>
+                        <button onclick="openModal1()" class:"button">Crear</button>
                     </td>
                     <td>
-                        <button class="btn-primary" onclick="showTable('tablaDocentes')">Ver</button>
+                        <button class:"button" onclick="showTable('tablaDocentes')">Ver</button>
                         <button onclick="openModal2()" class="btn-primary">Crear</button>
                     </td>
                     <td>
-                        <button class="btn-primary" onclick="showTable('tablaalumno')">Ver</button>
-                        <button onclick="openModal3()" class="btn-primary">Crear</button>
+                        <buttonclass:"button" onclick="showTable('tablaalumno')">Ver</buttonclass:>
+                        <button onclick="openModal3()"class:"button">Crear</button>
                     </td>
                     <td>
-                        <button class="btn-primary" onclick="showTable('tablacarrera')">Ver</button>
-                        <button onclick="openModal8()" class="btn-primary">Crear</button>
+                        <button class:"button" onclick="showTable('tablacarrera')">Ver</button>
+                        <button onclick="openModal8()" class:"button">Crear</button>
                     </td>
 
                 </tr>
@@ -476,7 +476,7 @@
         </table>
 
         {# Botón de regreso #}
-        <button id="backButton" class="btn-primary" onclick="showTable('tablaTecnicaturas')" style="display: none;">Regresar</button>
+        <button id="backButton" class:"button" onclick="showTable('tablaTecnicaturas')" style="display: none;">Regresar</button>
 
 
         {# Personas Vistas #}
@@ -503,7 +503,7 @@
                     <td>{{ persona.apellido }}</td>
                     <td>{{ persona.dniPasaporte }}</td>
                     <td>
-                        <button onclick="openModal6({{ persona.id }})" >Editar</button>
+                        <button class:"button" onclick="openModal6({{ persona.id }})" >Editar</button>
                     </td>
                 </tr>
             {% else %}
@@ -535,7 +535,7 @@
                     <td>{{ docente }}</td>
                     <td>{{ docente.foja}}</td>
                     <td>
-                        <button onclick="openModal5({{ docente.id }})" >Editar</button>
+                        <button class:"button" onclick="openModal5({{ docente.id }})" >Editar</button>
                     </td>
                 </tr>
             {% else %}
@@ -572,7 +572,7 @@
                     <td>{{ alumno.escuelaSec }}</td>
                     <td>{{ alumno.anioEgreso }}</td>
                     <td>
-                        <button onclick="openModal4({{ alumno.id }})" >Editar</button>
+                        <button class:"button" onclick="openModal4({{ alumno.id }})" >Editar</button>
                     </td>
                 </tr>
             {% else %}
@@ -610,7 +610,7 @@
                     <td>{{ carrera.inicio ? carrera.inicio|date('Y-m-d') : '' }}</td>
                     <td>{{ carrera.fin ? carrera.fin|date('Y-m-d') : '' }}</td>    
                     <td>
-                        <button onclick="openModal7({{ carrera.id }})" >Editar</button>
+                        <button class:"button" onclick="openModal7({{ carrera.id }})" >Editar</button>
                     </td>
                 </tr>
             {% else %}
