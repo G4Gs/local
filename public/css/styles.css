@@ -12,21 +12,21 @@
     object-fit: cover;
 }
 .buttonn {
-    background-color: #007bff;  /* Azul vibrante */
-    color: white;               /* Texto blanco */
-    border: none;               /* Sin borde */
-    padding: 8px 16px;          /* Espaciado interno más pequeño */
-    font-size: 14px;            /* Tamaño de fuente más pequeño */
-    font-weight: bold;          /* Negrita */
-    border-radius: 4px;         /* Bordes ligeramente redondeados */
-    cursor: pointer;           /* Cursor en forma de mano */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-    text-align: center;         /* Centrado del texto */
+    background-color: #007bff !important;  /* Azul vibrante */
+    color: white !important;               /* Texto blanco */
+    border: none !important;               /* Sin borde */
+    padding: 8px 16px !important;          /* Espaciado interno más pequeño */
+    font-size: 14px !important;            /* Tamaño de fuente más pequeño */
+    font-weight: bold !important;          /* Negrita */
+    border-radius: 4px !important;         /* Bordes ligeramente redondeados */
+    cursor: pointer !important;           /* Cursor en forma de mano */
+    transition: background-color 0.3s ease, transform 0.3s ease !important; /* Transición suave */
+    text-align: center !important;         /* Centrado del texto */
 }
 
 .buttonn:hover {
-    background-color: #0056b3;  /* Color más oscuro al pasar el mouse */
-    transform: scale(1.05);      /* Aumento ligeramente */
+    background-color: #0056b3 !important;  /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05) !important;      /* Aumento ligeramente */
 }
 
 
