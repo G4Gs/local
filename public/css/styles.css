@@ -823,7 +823,7 @@ input:valid {
 .datos-filtered {
     display: flex;
     justify-content: center;
-    color: black;
+    color: rgb(0, 0, 0);
     font-family:  initial;
     font-weight: bold;
 } 
