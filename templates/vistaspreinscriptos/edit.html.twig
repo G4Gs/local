@@ -1,80 +1,25 @@
-{% extends 'base.html.twig' %}
+<button type="button" class="button"
+    onclick="openModalPersona(
+        '{{ record.persona_nombre }}', 
+        '{{ record.persona_apellido }}', 
+        '{{ record.fecha_nacimiento }}', 
+        '{{ record.dni_pasaporte }}', 
+        '{{ record.genero|default('') }}', 
+        '{{ record.email|default('') }}', 
+        '{{ record.telefono|default('') }}', 
+        '{{ record.partido|default('') }}', 
+        '{{ record.calle|default('') }}', 
+        '{{ record.numero|default('') }}', 
+        '{{ record.piso|default('') }}', 
+        '{{ record.departamento|default('') }}', 
+        '{{ record.pasillo|default('') }}', 
+        '{{ record.pais_descripcion|default('') }}', 
+        '{{ record.localidad_nombre|default('') }}',  
+        '{{ record.id }}'
+    )">
+    Inscribir
+</button>
 
-{% block title %}Editar Pre Inscriptos{% endblock %}
-
-{% block body %}
-    <h1>Editar Pre Inscriptos</h1>
-    <form action="{{ path('app_vistaspreinscriptos_edit', { id: record.id }) }}" method="post">
-        <div class="form-group">
-            <label for="persona_nombre1">Nombre:</label>
-            <input type="text" id="persona_nombre1" name="persona_nombre" value="{{ record.persona_nombre }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="persona_apellido1">Apellido:</label>
-            <input type="text" id="persona_apellido1" name="persona_apellido" value="{{ record.persona_apellido }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ record.fecha_nacimiento }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="dni_pasaporte">DNI/Pasaporte:</label>
-            <input type="text" id="dni_pasaporte" name="dni_pasaporte" value="{{ record.dni_pasaporte }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="tecnicatura_nombre">Nombre de la Tecnicatura:</label>
-            <input type="text" id="tecnicatura_nombre" name="tecnicatura_nombre" value="{{ record.tecnicatura_nombre }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="tecnicatura_resolucion">Resolución de la Tecnicatura:</label>
-            <input type="text" id="tecnicatura_resolucion" name="tecnicatura_resolucion" value="{{ record.tecnicatura_resolucion }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="turno_descripcion">Turno:</label>
-            <input type="text" id="turno_descripcion" name="turno_descripcion" value="{{ record.turno_descripcion }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="instituto_numero">Número de Instituto:</label>
-            <input type="text" id="instituto_numero" name="instituto_numero" value="{{ record.instituto_numero }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="instituto_cue">CUE del Instituto:</label>
-            <input type="text" id="instituto_cue" name="instituto_cue" value="{{ record.instituto_cue }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="new_field">Listo:</label>
-            <select id="new_field" name="new_field" class="form-control">
-                <option value="0" {% if record.new_field == '0' %}selected{% endif %}>0 - Por defecto</option>
-                <option value="1" {% if record.new_field == '1' %}selected{% endif %}>1 - Formulario de persona cargado</option>
-                <option value="2" {% if record.new_field == '2' %}selected{% endif %}>2 - Formulario de estudiante cargado</option>
-                <option value="3" {% if record.new_field == '3' %}selected{% endif %}>3 - Formulario de carrera cargado</option>
-                <option value="4" {% if record.new_field == '4' %}selected{% endif %}>4 - Formulario de Asignaturas cargado</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        {# reescribir logica para aidar la inscripcion arriba corroborar exitencia de campos #}
-        <button type="button" class="btn btn-primary"
-            onclick="openModalPersona(
-                '{{ record.persona_nombre }}', 
-                '{{ record.persona_apellido }}', 
-                '{{ record.fecha_nacimiento }}', 
-                '{{ record.dni_pasaporte }}', 
-                '{{ record.genero|default('') }}', 
-                '{{ record.email|default('') }}', 
-                '{{ record.telefono|default('') }}', 
-                '{{ record.partido|default('') }}', 
-                '{{ record.calle|default('') }}', 
-                '{{ record.numero|default('') }}', 
-                '{{ record.piso|default('') }}', 
-                '{{ record.departamento|default('') }}', 
-                '{{ record.pasillo|default('') }}', 
-                '{{ record.pais_descripcion|default('') }}', 
-                '{{ record.localidad_nombre|default('') }}',  
-                '{{ record.id }}'
-            )">
-            Inscribir
-        </button>
-    </form>
 
 
 
@@ -88,7 +33,7 @@
         {% if dni is not null %}
             <p>DNI encontrado: {{ dni }}</p>
         {% else %}
-            <p>No hay un DNI en la sesión.</p>
+            <p>No se encuentra DNI.</p>
         {% endif %}
 
 

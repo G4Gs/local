@@ -23,7 +23,7 @@
 				<!-- Sidebar - Brand -->
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_home')}}">
 					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
+<img src="{{ asset('img/ISFT-12.jpg') }}" alt="Logo" width="60" class="logo-circular">
 					</div>
 					<div class="sidebar-brand-text mx-3">Instituto Local
 					</div>
@@ -33,14 +33,7 @@
 				<hr
 				class="sidebar-divider my-0">
 
-				<!-- Nav Item - HOLA! -->
-				<li class="nav-item active">
-					<a class="nav-link" href="{{ path('app_home')}}">
-						<i class="fas fa-fw fa-tachometer-alt"></i>
-						<span>HOLA!</span>
-					</a>
-				</li>
-
+			
 				<!-- Divider -->
 				<hr
 				class="sidebar-divider">
@@ -53,86 +46,62 @@
 
 				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') %}
 				<!-- Nav Item - Charts -->
+				
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistaspreinscriptos')}}">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Preinscriptos</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Alumnos</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Tecnicaturas y Asignaturas</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="clearSessionCursos(); return false;">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Comisiones, Cursos y Cursadas</span>
+					</a>
+				</li>	
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Finales</span>
+					</a>
+				</li>
+				{% endif %}
+
+				
+				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_DOCENTE') %}
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="clearSessionDocentes(); return false;">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Docentes</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Recursos Humanos</span>
+					</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Usuarios</span>
 					</a>
 				</li>
-				
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_vistaspreinscriptos')}}">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Preinscriptos</span>
-					</a>
-				</li>
-
-				<li class="nav-item">
-					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Tecnicaturas y Asignaturas</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" onclick="clearSessionCursos(); return false;">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Comisiones, Cursos y Cursadas</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Recursos Humanos</span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Finales</span>
-					</a>
-				</li>
 				{% endif %}
 
-				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') or is_granted ('ROLE_ESTUDIANTE')%}	
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Estudiante</span>
-					</a>
-				</li>
-				{% endif %}
-
-				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_DOCENTE') %}
-				<li class="nav-item">
-					<a class="nav-link" href="#" onclick="clearSessionDocentes(); return false;">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Docentes</span>
-					</a>
-				</li>
-				{% endif %}
-
-				 
-				<!-- Nav Item - Pages Collapse Menu -->
-				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
-				<li class="nav-item">
-					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
-						<i class="fas fa-fw fa-folder"></i>
-						<span>Personas</span>
-					</a>
-					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<h6 class="collapse-header">Datos de Alumnos</h6>
-							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
-							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
-							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
-						
-						</div>
-					</div>
-				</li>
-				{% endif %}
-
-
-
+		
 				<!-- Nav Item - Charts -->
 				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
 				<!-- Nav Item - Pages Collapse Menu -->
@@ -151,13 +120,13 @@
 							<a class="collapse-item" href="{{ path('app_correlativa_index')}}">Correlativas</a>
 							<a class="collapse-item" href="{{ path('app_cursada_index')}}">Cursadas</a>
 							<a class="collapse-item" href="{{ path('app_curso_index')}}">Curso</a>
-							<a class="collapse-item" href="{{ path('app_cursada_docente_index')}}">Cursadas Docentes</a>
 							<a class="collapse-item" href="{{ path('app_examen_alumno_index')}}">Examen alumno</a>
 							<a class="collapse-item" href="{{ path('app_examen_final_index')}}">Examen Final</a>
 							<a class="collapse-item" href="{{ path('app_habilitante_index')}}">Habilitante</a>
 							<a class="collapse-item" href="{{ path('app_inscripcion_final_index')}}">Inscripcion Final</a>
-							<a class="collapse-item" href="{{ path('app_examen_alumno_new')}}">Examen alumno</a>
-							<a class="collapse-item" href="{{ path('app_nota_index')}}">Nota</a>
+							<a class="collapse-item" href="{{ path('app_examen_alumno_new')}}">Ingreso de Examen alumno</a>
+							<a class="collapse-item" href="{{ path('app_nota_index')}}">Nota Anual de Alumno</a>
+							<a class="collapse-item" href="{{ path('app_cursada_docente_index')}}">Cursadas Docentes</a>
 							<a class="collapse-item" href="{{ path('app_revista_index')}}">Revista</a>
 							<a class="collapse-item" href="{{ path('app_titulo_index')}}">Titulo</a>
 
@@ -166,6 +135,25 @@
 				</li>
 				{% endif %}
 				
+                <!-- Nav Item - Pages Collapse Menu -->
+				 {% if is_granted ('ROLE_SUPER_ADMIN')  %}
+				  <li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Personas</span>
+					</a>
+					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Datos de Alumnos</h6>
+							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
+							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
+							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
+						
+						</div>
+					</div>
+				 </li>
+				{% endif %}
+
 
 				<!-- Nav Item - Pages Collapse Menu -->
 				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
@@ -196,17 +184,9 @@
 
 				<!-- Sidebar Toggler (Sidebar) -->
 				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
+					<button class="button" id="sidebarToggle"></button>
+ 	</div>
 
-				<!-- Sidebar Message -->
-				<div class="sidebar-card d-none d-lg-flex">
-					<img class="sidebar-card-illustration mb-2" src={{asset('img/logo.jpeg')}} alt="...">
-					<p class="text-center mb-2">
-						<strong>Bienvenidos</strong>
-						al proyecto del i12!</p>
-					
-				</div>
 
 			</ul>
 			<!-- End of Sidebar -->
@@ -228,12 +208,20 @@
 							<i class="fa fa-bars"></i>
 						</button>
 
+						<div class="super">
+					<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
+					<p class="text-center mb-2">
+						<strong>Bienvenidos</strong>
+						al proyecto del i12!</p>
+					
+				</div>
+
 <!-- Campo de búsqueda de ciclo lectivo -->
 <form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
     <div class="input-group">
         <input id="ciclo-lectivo-input" type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo - Cohorte..." aria-label="Search" aria-describedby="basic-addon2" value="" maxlength="4">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button" onclick="filtrarPorCicloLectivo()">
+            <button class:"button" onclick="filtrarPorCicloLectivo()">
                 <i class="fas fa-search fa-sm"></i>
             </button>
         </div>
@@ -352,7 +340,11 @@ document.addEventListener("DOMContentLoaded", function() {
 										Activity Log
 									</a>
 									<div class="dropdown-divider"></div>
-									<a class="btn btn-primary" href="{{ path('app_logout')}}">Salir</a>
+ 
+									<a class="button" href="{{ path('app_logout')}}">Salir</a>
+ 
+								 
+ 
 								</div>
 							</li>
 

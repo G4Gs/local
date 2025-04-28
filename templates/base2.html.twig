@@ -27,18 +27,26 @@
 
 				<!-- Sidebar - Brand -->
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_home')}}">
-					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
-					</div>
-					<div class="sidebar-brand-text mx-3">Instituto Local
-					</div>
-				</a>
+    <div class="sidebar-brand-icon">
+ 
+<img src="{{ asset('img/ISFT-12.jpg') }}" alt="Logo" style="width: 40px; height: 40px; border-radius: 50% !important; object-fit: cover;">
+
+    </div>
+    <div class="sidebar-brand-text mx-3">Instituto Local</div>
+ 
+       <img src="{{ asset('img/ISFT-12.jpg') }}" alt="Logo" style="width: 40px; height: 40px;">
+
+    </div>
+    <div class="sidebar-brand-text mx-3">Instituto uyugiytLocal</div>
+ 
+</a>
+
 
 				<!-- Divider -->
 				<hr
 				class="sidebar-divider my-0">
 
-				<!-- Nav Item - HOLA! -->
+				<!-- Nav Item - HOaaaaLA! -->
 				<li class="nav-item active">
 					<a class="nav-link" href="{{ path('app_home')}}">
 						<i class="fas fa-fw fa-tachometer-alt"></i>
@@ -47,9 +55,6 @@
 				</li>
 
 				<!-- Divider -->
-				<hr
-				class="sidebar-divider">
-
 				<!-- Heading -->
 				<div class="sidebar-heading">
 					Menu
@@ -59,13 +64,22 @@
 				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') %}
 				<!-- Nav Item - Charts -->
 				<li class="nav-item">
+
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Usuarios</span>
 					</a>
 				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistaspreinscriptos')}}">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Central Preinscriptos</span>
+					</a>
+				</li>
 
 				<li class="nav-item">
+
 					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Central Tecnicaturas y Asignaturas</span>
@@ -78,17 +92,24 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Central Finales</span>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
 						<span>Central Recursos Humanos</span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
+					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Finales</span>
+						<span>Usuarios</span>
 					</a>
 				</li>
+
 				{% endif %}
 
 				{% if is_granted ('ROLE_SUPER_ADMIN') or is_granted ('ROLE_ADMIN') or is_granted ('ROLE_ESTUDIANTE')%}	
@@ -108,8 +129,6 @@
 					</a>
 				</li>
 				{% endif %}
-
-				
 				<!-- Nav Item - Pages Collapse Menu -->
 				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
 				<li class="nav-item">
@@ -120,9 +139,10 @@
 					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Datos de Alumnos</h6>
-							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
+              <a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
 							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
-							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
+              <a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
+							
 						
 						</div>
 					</div>
@@ -164,7 +184,25 @@
 				</li>
 				{% endif %}
 				
-
+				<!-- Nav Item - Pages Collapse Menu -->
+				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
+						<i class="fas fa-fw fa-folder"></i>
+						<span>Personas</span>
+					</a>
+					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<h6 class="collapse-header">Datos de Alumnos</h6>
+							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
+							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
+							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
+						
+						</div>
+					</div>
+				</li>
+				{% endif %}
+			
 				<!-- Nav Item - Pages Collapse Menu -->
 				{% if is_granted ('ROLE_SUPER_ADMIN')  %}
 				<li class="nav-item">
@@ -194,7 +232,8 @@
 
 				<!-- Sidebar Toggler (Sidebar) -->
 				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
+					<button class="button" id="sidebarToggle"></button>
+
 				</div>
 
 				<!-- Sidebar Message -->
@@ -226,17 +265,62 @@
 							<i class="fa fa-bars"></i>
 						</button>
 
-						<!-- Topbar Search -->
-						<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-							<div class="input-group">
-								<input type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo..." aria-label="Search" aria-describedby="basic-addon2">
-								<div class="input-group-append">
-									<button class="btn btn-primary" type="button">
-										<i class="fas fa-search fa-sm"></i>
-									</button>
-								</div>
-							</div>
-						</form>
+<!-- Campo de búsqueda de ciclo lectivo -->
+<form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input id="ciclo-lectivo-input" type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo - Cohorte..." aria-label="Search" aria-describedby="basic-addon2" value="" maxlength="4">
+        <div class="input-group-append">
+            <button class:"button" onclick="filtrarPorCicloLectivo()">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM completamente cargado y parseado");
+    
+    // Obtener el año actual
+    const currentYear = new Date().getFullYear();
+    console.log("Año actual:", currentYear);
+
+    // Establecer el valor del campo de ciclo lectivo con el año actual por defecto
+    const inputCiclo = document.getElementById('ciclo-lectivo-input');
+    console.log("Campo input encontrado:", inputCiclo);
+
+    if (inputCiclo) {
+        inputCiclo.value = currentYear;
+        console.log("Valor asignado al input:", inputCiclo.value);
+
+        // Solo permitir ingresar números y limitar a 4 dígitos
+        inputCiclo.addEventListener('input', function() {
+            // Eliminar cualquier carácter que no sea un número
+            this.value = this.value.replace(/\D/g, '');
+            // Limitar la longitud a 4 caracteres
+            if (this.value.length > 4) {
+                this.value = this.value.slice(0, 4);
+            }
+            console.log("Valor actual del input:", this.value);
+        });
+    } else {
+        console.error("No se encontró el campo input ciclo lectivo.");
+    }
+
+    // Función para filtrar por ciclo lectivo y redirigir
+    window.filtrarPorCicloLectivo = function() {
+        const cicloLectivo = inputCiclo.value;
+        // Validar que el ciclo lectivo tenga 4 dígitos
+        if (cicloLectivo.length === 4) {
+            // Redirigir a la misma página con el ciclo lectivo como parámetro en la URL
+            window.location.href = `{{ path('app_vistascursada') }}?cicloLectivo=${cicloLectivo}`;
+        } else {
+            alert('Por favor, ingresa un ciclo lectivo válido de 4 dígitos.');
+        }
+    }
+});
+</script>
+
 
 						<!-- Topbar Navbar -->
 						<ul class="navbar-nav ml-auto" id="topbarToggle">
@@ -305,7 +389,11 @@
 										Activity Log
 									</a>
 									<div class="dropdown-divider"></div>
-									<a class="btn btn-primary" href="{{ path('app_logout')}}">Salir</a>
+ 
+									<a class="button" href="{{ path('app_logout')}}">Salir</a>
+ 
+								 
+ 
 								</div>
 							</li>
 

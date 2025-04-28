@@ -17,7 +17,7 @@
                 <td>{{ curso.comision }}</td>
                 <td>     
                     {#crear cursada para el alumno del curso seleccionado#}
-                    <button onclick="inscribirCurso('{{ curso.comision.tecnicatura.id }}', '{{ curso.comision.id }}', '{{ curso.id }}', '{{ id }}')" class="btn-primary">Inscribirse</button>
+                    <button class:"button" onclick="inscribirCurso('{{ curso.comision.tecnicatura.id }}', '{{ curso.comision.id }}', '{{ curso.id }}', '{{ id }}')" class="btn-primary">Inscribirse</button>
                 </td>
             </tr>
         {% else %}
