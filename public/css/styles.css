@@ -1,4 +1,9 @@
-
+.super{
+    position: fixed;
+    width: auto;
+    height: auto;
+    left: 17%;
+}
  
 .logo-circular {
     width: 40px;
