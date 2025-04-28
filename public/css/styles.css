@@ -22,7 +22,6 @@
     cursor: pointer !important;           /* Cursor en forma de mano */
     transition: background-color 0.3s ease, transform 0.3s ease !important; /* Transición suave */
     text-align: center !important;      /* Centrado del texto */
-    margin: 0px auto !important;
 }
 
 .buttonn:hover {
