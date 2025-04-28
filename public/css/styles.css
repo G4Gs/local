@@ -1,9 +1,88 @@
-  .navar{
-    background-color: rgb(209, 14, 14);
-    color: white;
-  }
-  
-  /* Estilos para el modal */
+.super{
+    position: fixed;
+    width: auto;
+    height: auto;
+    left: 17%;
+}
+ 
+.logo-circular {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.buttonn {
+    background-color: #007bff;  /* Azul vibrante */
+    color: white;               /* Texto blanco */
+    border: none;               /* Sin borde */
+    padding: 8px 16px;          /* Espaciado interno más pequeño */
+    font-size: 14px;            /* Tamaño de fuente más pequeño */
+    font-weight: bold;          /* Negrita */
+    border-radius: 4px;         /* Bordes ligeramente redondeados */
+    cursor: pointer;           /* Cursor en forma de mano */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+    text-align: center;         /* Centrado del texto */
+}
+
+.buttonn:hover {
+    background-color: #0056b3;  /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05);      /* Aumento ligeramente */
+}
+
+
+
+/* Centrar el botón en la barra */
+.centered-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #007bff;  /* Color de fondo */
+    color: white;  /* Color del ícono */
+    border: none;  /* Quitar borde */
+    padding: 10px 15px;  /* Espaciado interno */
+    border-radius: 5px;  /* Bordes redondeados */
+    font-size: 18px;  /* Tamaño del ícono */
+    cursor: pointer;
+    transition: background-color 0.3s ease;  /* Animación suave para color de fondo */
+}
+
+/* Efecto hover */
+.centered-btn:hover {
+    background-color: #0056b3;  /* Cambia el color al pasar el mouse */
+}
+
+/* Estilos para el ícono */
+.centered-btn i {
+    font-size: 20px;  /* Tamaño del ícono */
+}
+
+
+
+
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    /* El div no tiene color */
+}
+
+.button button {
+
+    background: rgb(81, 81, 229); /* El color ahora está en el botón */
+
+    background: rgb(204, 34, 34); /* El color ahora está en el botón */
+
+    color: white; /* Opcional: para que el texto se vea blanco */
+    padding: 10px 20px; /* Opcional: tamaño del botón */
+    border: none; /* Opcional: saca el borde gris feo */
+    border-radius: 5px; /* Opcional: esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor a manito */
+}
+ 
+        
+
+
         .modal {
             display: none; 
             position: fixed;
@@ -240,16 +319,24 @@
     justify-content: center;
     display: flex; 
 }
+
 .btn.btn-primary {
     background: rgb(81, 81, 229);
+    justify-content: center;
+    justify-items: center;
+    
 }
 .btn.btn-primary:hover {
     background: rgb(23, 23, 225);
+    justify-content: center;
+    justify-items: center;
+
 }
 
-
-
-
+.dropdown-divider {
+    justify-content: center;
+    display: flex;
+}
 
 
 .home-input {
@@ -850,7 +937,7 @@ input:valid {
     text-align:center;
     font-size: 25px;
 }
-.custi {
+.custin {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px; /* Cambia el tamaño según lo necesites */
     color: #e6e2e2; /* Cambia el color si es necesario */
