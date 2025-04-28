@@ -5,6 +5,6 @@
         {{ form_row(form.comision) }}
         {{ form_row(form.turno) }}
         {{ form_row(form.tecnicatura) }}
-        {{ form_row(form.estado) }}
+        {{ form_row(form.estado, {'help':'(Activo/Inactivo)'}) }}
     <button type="submit">Guardar</button>
 {{ form_end(form) }}

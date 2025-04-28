@@ -1,4 +1,9 @@
-        /* Estilos para el modal */
+  .navar{
+    background-color: rgb(209, 14, 14);
+    color: white;
+  }
+  
+  /* Estilos para el modal */
         .modal {
             display: none; 
             position: fixed;
