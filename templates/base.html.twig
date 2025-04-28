@@ -23,7 +23,7 @@
 				<!-- Sidebar - Brand -->
 				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_home')}}">
 					<div class="sidebar-brand-icon rotate-n-15">
-						<i class="fas fa-laugh-wink"></i>
+<img src="{{ asset('img/ISFT-12.jpg') }}" alt="Logo" width="60" class="logo-circular">
 					</div>
 					<div class="sidebar-brand-text mx-3">Instituto Local
 					</div>
@@ -50,31 +50,31 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistaspreinscriptos')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Preinscriptos</span>
+						<span class="custin">Preinscriptos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Alumnos</span>
+						<span class="custin">Alumnos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Tecnicaturas y Asignaturas</span>
+						<span class="custin">Tecnicaturas y Asignaturas</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionCursos(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Comisiones, Cursos y Cursadas</span>
+						<span class="custin">Comisiones, Cursos y Cursadas</span>
 					</a>
 				</li>	
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Finales</span>
+						<span class="custin">Finales</span>
 					</a>
 				</li>
 				{% endif %}
@@ -84,19 +84,19 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionDocentes(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Docentes</span>
+						<span class="custin">Docentes</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Recursos Humanos</span>
+						<span class="custin">Recursos Humanos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Usuarios</span>
+						<span class="custin">Usuarios</span>
 					</a>
 				</li>
 				{% endif %}
@@ -108,7 +108,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Carreras</span>
+						<span class="custin">Carreras</span>
 					</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -140,7 +140,7 @@
 				  <li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Personas</span>
+						<span class="custin">Personas</span>
 					</a>
 					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -160,7 +160,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Configuracion</span>
+						<span class="custin">Configuracion</span>
 					</a>
 					<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -175,6 +175,7 @@
 							<a class="collapse-item" href="{{ path('app_modalidad_index') }}">Modalidad</a>					
 						</div>
 					</div>
+					
 				</li>
 				{% endif %}
 
@@ -184,11 +185,9 @@
 
 				<!-- Sidebar Toggler (Sidebar) -->
 				<div class="text-center d-none d-md-inline">
-					<button class="rounded-circle border-0" id="sidebarToggle"></button>
-				</div>
+					<button class="button" id="sidebarToggle"></button>
+ 	</div>
 
-				<!-- Sidebar Message -->
-				
 
 			</ul>
 			<!-- End of Sidebar -->
@@ -210,26 +209,15 @@
 							<i class="fa fa-bars"></i>
 						</button>
 
-						<div class="super">
-					<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
-					<p class="text-center mb-2">
-						<strong>Bienvenidos</strong>
-						al proyecto del i12!</p>
-					
+				  <div class="super" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); display: flex; align-items: center;">
+				     	<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
 				</div>
-
-<!-- Campo de búsqueda de ciclo lectivo -->
-<form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    <div class="input-group">
-        <input id="ciclo-lectivo-input" type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo - Cohorte..." aria-label="Search" aria-describedby="basic-addon2" value="" maxlength="4">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" onclick="filtrarPorCicloLectivo()">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
-    </div>
-</form>
-
+               
+			   <div class="super" style="position: absolute; left: 100px; top: 50%; transform: translateY(-50%); display: flex; align-items: center;">
+						<p class="text-center mb-2">
+						<strong>Bienvenidos</strong>
+					    	al proyecto del i12!</p>
+					</div>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM completamente cargado y parseado");
@@ -342,7 +330,11 @@ document.addEventListener("DOMContentLoaded", function() {
 										Activity Log
 									</a>
 									<div class="dropdown-divider"></div>
-									<a class="btn btn-primary" href="{{ path('app_logout')}}">Salir</a>
+ 
+									<a class="button" href="{{ path('app_logout')}}">Salir</a>
+ 
+								 
+ 
 								</div>
 							</li>
 
