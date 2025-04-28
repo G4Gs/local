@@ -937,8 +937,9 @@ input:valid {
     text-align:center;
     font-size: 25px;
 }
+
 .custin {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px; /* Cambia el tamaño según lo necesites */
-    color: #e6e2e2; /* Cambia el color si es necesario */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    font-size: 18px !important; /* Cambia el tamaño según lo necesites */
+    color: #e6e2e2 !important;
 }

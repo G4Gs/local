@@ -46,8 +46,10 @@
 				<hr
 				class="sidebar-divider my-0">
 
-				
-				
+
+				<!-- 
+				</li>
+
 
 				<!-- Divider -->
 				<!-- Heading -->
@@ -89,19 +91,23 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
 						<i class="fas fa-fw fa-folder"></i>
+
 						<span class="custin">Finales</span>
+
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custin">Central Recursos Humanos</span>
+
+						<span class="custin">Recursos Humanos</span>
+
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Usuarios</span>
+						<span class="custin">Usuarios</span>
 					</a>
 				</li>
 
@@ -111,7 +117,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Estudiante</span>
+						<span class="custin">Estudiante</span>
 					</a>
 				</li>
 				{% endif %}
@@ -120,7 +126,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionDocentes(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Central Docentes</span>
+						<span class="custin"> Docentes</span>
 					</a>
 				</li>
 				{% endif %}
@@ -152,7 +158,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Carreras</span>
+						<span class="custin">Carreras</span>
 					</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -184,7 +190,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Personas</span>
+						<span class="custin">Personas</span>
 					</a>
 					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -203,7 +209,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 						<i class="fas fa-fw fa-folder"></i>
-						<span>Configuracion</span>
+						<span class="custin">Configuracion</span>
 					</a>
 					<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
