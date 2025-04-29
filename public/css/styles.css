@@ -1,27 +1,18 @@
+ 
 
 
-.back {
+ 
+
+
+ 
+.super{
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    z-index: 1000;
-  }
-
-  .back:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
-
-
+    width: auto;
+    height: auto;
+    left: 17%;
+}
+ 
+ 
 .logo-circular {
     width: 40px;
     height: 40px;
@@ -29,21 +20,21 @@
     object-fit: cover;
 }
 .buttonn {
-    background-color: #007bff;  /* Azul vibrante */
-    color: white;               /* Texto blanco */
-    border: none;               /* Sin borde */
-    padding: 8px 16px;          /* Espaciado interno más pequeño */
-    font-size: 14px;            /* Tamaño de fuente más pequeño */
-    font-weight: bold;          /* Negrita */
-    border-radius: 4px;         /* Bordes ligeramente redondeados */
-    cursor: pointer;           /* Cursor en forma de mano */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
-    text-align: center;         /* Centrado del texto */
+    background-color: #007bff !important;  /* Azul vibrante */
+    color: white !important;               /* Texto blanco */
+    border: none !important;               /* Sin borde */
+    padding: 8px 16px !important;          /* Espaciado interno más pequeño */
+    font-size: 14px !important;            /* Tamaño de fuente más pequeño */
+    font-weight: bold !important;          /* Negrita */
+    border-radius: 4px !important;         /* Bordes ligeramente redondeados */
+    cursor: pointer !important;           /* Cursor en forma de mano */
+    transition: background-color 0.3s ease, transform 0.3s ease !important; /* Transición suave */
+    text-align: center !important;      /* Centrado del texto */
 }
 
 .buttonn:hover {
-    background-color: #0056b3;  /* Color más oscuro al pasar el mouse */
-    transform: scale(1.05);      /* Aumento ligeramente */
+    background-color: #0056b3 !important;  /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05) !important;      /* Aumento ligeramente */
 }
 
 
@@ -954,8 +945,9 @@ input:valid {
     text-align:center;
     font-size: 25px;
 }
-.custi {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px; /* Cambia el tamaño según lo necesites */
-    color: #e6e2e2; /* Cambia el color si es necesario */
+
+.custin {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    font-size: 18px !important; /* Cambia el tamaño según lo necesites */
+    color: #e6e2e2 !important;
 }

@@ -409,7 +409,7 @@
                     {% endif %}
 
 
-                   {# {% set max_rows = 12 %} {# Definir el número máximo de filas por columna #}
+                   # {% set max_rows = 12 %} {# Definir el número máximo de filas por columna #}
 
                     {% for i in range(0, max_rows -1) %}
                         <tr>
@@ -570,7 +570,8 @@
                 document.getElementById('correlativaModal').style.display = 'none';
                 document.getElementById('modalCorre').innerHTML = '';
             }
-
+       </div>
+    
         </script>
 
         <!-- Modal Correlativa -->
@@ -608,7 +609,9 @@
                 <div id="tecnicaturaBody" class="submodal"></div>
             </div>
         </div>
+   <button id="backButton" class="butonn" style="display: none; display: block;">Volver a Tecnicas</button>
 
+ 
 
        
 
@@ -618,3 +621,6 @@
 
 {% endblock %}
 
+ 
+ 
+ 

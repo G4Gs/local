@@ -3,23 +3,11 @@
 {% block title %}Pre Inscriptos{% endblock %}
 
 {% block body %}
-    {% if dni is not null %}
-        <p>DNI encontrado: {{ dni }}</p>
-    {% else %}
-        <p>No hay un DNI en la sesión.</p>
-    {% endif %}
+    
 
     <h1 class="datos-filtered" id="titulo-pre">Pre Inscriptos</h1>
     <h1 class="datos-filtered">Estudiantes: </h1>
 
-    <div id="contenedor-pre">
-        <div id="contenedor-pre1" style="display: flex; justify-content: flex-end;">
-            <form action="{{ path('app_vistaspreinscriptos_clear_files') }}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas limpiar los archivos CSV? Esto no se puede deshacer.');">
-                <button type="submit" class="buttonn">Limpiar Registros</button>
-
-            </form>
-        </div>
-    </div>
 
     {% if copied_data is defined and copied_data is not empty %}
         <div id="body-vistas2" style="display: block;">
@@ -95,6 +83,7 @@
                             </td>
                         </tr>
                     {% endfor %}
+                      <div id="contenedor-pre">
                 </tbody>
             </table>
         </div>
@@ -1081,8 +1070,20 @@
             <button type="button" class="btn btn-secondary" onclick="closeModal3()">Cancelar</button>
             <button type="button" class="btn btn-primary" id="confirmButton3" onclick="confirmAction3()">Confirmar</button>
         </div>
-    </div> 
 
+    </div>
+      
+
+    
+ 
+       <div id="contenedor-pre1" style="display: flex; justify-content: center;  ">
+            <form action="{{ path('app_vistaspreinscriptos_clear_files') }}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas limpiar los archivos CSV? Esto no se puede deshacer.');">
+            
+                <button type="submit" class="buttonn">Limpiar Registros</button>
+           
+            </form>
+        </div>
+        
 
 {% endblock %}
 
@@ -1267,4 +1268,5 @@
             document.getElementById('modalClose').addEventListener('click', handleRedirect);
         });*/
     </script> 
+     
 {% endblock %}

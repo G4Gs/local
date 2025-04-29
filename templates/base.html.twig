@@ -50,31 +50,31 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistaspreinscriptos')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Preinscriptos</span>
+						<span class="custin">Preinscriptos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Alumnos</span>
+						<span class="custin">Alumnos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Tecnicaturas y Asignaturas</span>
+						<span class="custin">Tecnicaturas y Asignaturas</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionCursos(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Comisiones, Cursos y Cursadas</span>
+						<span class="custin">Comisiones, Cursos y Cursadas</span>
 					</a>
 				</li>	
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasmesas')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Finales</span>
+						<span class="custin">Finales</span>
 					</a>
 				</li>
 				{% endif %}
@@ -84,19 +84,19 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionDocentes(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Docentes</span>
+						<span class="custin">Docentes</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionPersonas(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Recursos Humanos</span>
+						<span class="custin">Recursos Humanos</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Usuarios</span>
+						<span class="custin">Usuarios</span>
 					</a>
 				</li>
 				{% endif %}
@@ -108,7 +108,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Carreras</span>
+						<span class="custin">Carreras</span>
 					</a>
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -140,7 +140,7 @@
 				  <li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTree">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Personas</span>
+						<span class="custin">Personas</span>
 					</a>
 					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -160,7 +160,7 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custi">Configuracion</span>
+						<span class="custin">Configuracion</span>
 					</a>
 					<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
@@ -175,6 +175,7 @@
 							<a class="collapse-item" href="{{ path('app_modalidad_index') }}">Modalidad</a>					
 						</div>
 					</div>
+					
 				</li>
 				{% endif %}
 
@@ -207,26 +208,15 @@
 						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 							<i class="fa fa-bars"></i>
 						</button>
-
-						<div class="super">
-					<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
-					<p class="text-center mb-2">
-						<strong>Bienvenidos</strong>
-						al proyecto del i12!</p>
-					
+				  <div class="super" style="position: absolute; left: 10px; top: 40%; transform: translateY(-50%); display: flex; align-items: center;">
+				     	<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
 				</div>
-
-<!-- Campo de búsqueda de ciclo lectivo -->
-<form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-    <div class="input-group">
-        <input id="ciclo-lectivo-input" type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo - Cohorte..." aria-label="Search" aria-describedby="basic-addon2" value="" maxlength="4">
-        <div class="input-group-append">
-            <button class:"button" onclick="filtrarPorCicloLectivo()">
-                <i class="fas fa-search fa-sm"></i>
-            </button>
-        </div>
-    </div>
-</form>
+               
+			   <div class="super" style="position: absolute; left: 100px; top: 50%; transform: translateY(-50%); display: flex; align-items: center;">
+						<p class="text-center mb-2">
+						<strong>Bienvenidos</strong>
+					    	al proyecto del i12!</p>
+					</div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -326,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function() {
 								</a>
 
 								<!-- Dropdown - User Information -->
-								<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+								<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" >
 									<a class="dropdown-item" href="#">
 										<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 										Profile
@@ -339,13 +329,11 @@ document.addEventListener("DOMContentLoaded", function() {
 										<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
 										Activity Log
 									</a>
-									<div class="dropdown-divider"></div>
- 
-									<a class="button" href="{{ path('app_logout')}}">Salir</a>
- 
-								 
- 
-								</div>
+									<div class="dropdown-divider" style="display: flex; justify-content: center !important; align-items: center;"></div>
+                                        <p style="display: flex !important ; justify-content: center !important; align-items: center !important;">
+									    <a class="buttonn" styles="margin: 0 auto !important; text-align: center !important; display: block;" href="{{ path('app_logout')}}">Salir</a>
+										</p>
+									 </div>
 							</li>
 
 						</ul>
