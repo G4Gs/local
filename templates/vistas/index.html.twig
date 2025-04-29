@@ -25,31 +25,35 @@
 
         function showAsignaturas(tecnicaturaId) {
             // Ocultar todas las tablas de asignaturas
-            let tables = document.querySelectorAll('.tabla_home');
-            tables.forEach(table => table.style.display = 'none');
+    let tables = document.querySelectorAll('.tabla_home');
+    tables.forEach(table => table.style.display = 'none');
 
-            // Mostrar la tabla de asignaturas correspondiente
-            let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
-            if (asignaturasTable) {
-                asignaturasTable.style.display = '';
-            }
+    // Mostrar la tabla de asignaturas correspondiente
+    let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
+    if (asignaturasTable) {
+        asignaturasTable.style.display = '';
+    }
 
-            // Ocultar filtro tecnicaturas
-            let search = document.getElementById(`searchs`);
-            if (search) {
-                search.style.display = 'none';
-            }
+    // Ocultar filtro tecnicaturas
+    let search = document.getElementById(`searchs`);
+    if (search) {
+        search.style.display = 'none';
+    }
 
-            // Mostrar botón de regresar
-            let backButton = document.getElementById(`backButton`);
-            if (backButton) {
-                backButton.style.display = '';
-                // Asociar función para regresar
-                backButton.onclick = function() {
-                    hideAsignaturas(tecnicaturaId);
-                };
-            }
-        }
+    // Mostrar botón de regresar
+    let backButton = document.createElement('button');
+    backButton.textContent = 'Volver';
+    backButton.id = 'dynamicBackButton'; // Le ponemos ID para identificarlo
+    backButton.style = "background-color:rgb(61, 85, 235); color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 20px auto; display: block;";
+    backButton.onclick = function() {
+        hideAsignaturas(tecnicaturaId);
+    };
+
+    // Agregar el botón solo si no existe
+    if (!document.getElementById('dynamicBackButton')) {
+        document.getElementById('body-vistas').appendChild(backButton);
+    }
+}
 
         document.addEventListener('DOMContentLoaded', function() {
             // Twig evalúa si tecId está definido y no es nulo
@@ -62,30 +66,30 @@
         });
 
         function hideAsignaturas(tecnicaturaId) {
-            // Ocultar la tabla de asignaturas correspondiente
-            let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
-            if (asignaturasTable) {
-                asignaturasTable.style.display = 'none';
-            }
+          // Ocultar la tabla de asignaturas
+    let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
+    if (asignaturasTable) {
+        asignaturasTable.style.display = 'none';
+    }
 
-            // Mostrar filtro tecnicaturas
-            let search = document.getElementById(`searchs`);
-            if (search) {
-                search.style.display = '';
-            }
+    // Mostrar la tabla principal de tecnicaturas
+    let tablaTecnicaturas = document.getElementById('tablaTecnicaturas');
+    if (tablaTecnicaturas) {
+        tablaTecnicaturas.style.display = '';
+    }
 
-            // Mostrar la tabla de tecnicaturas principal
-            let tablaTecnicaturas = document.getElementById('tablaTecnicaturas');
-            if (tablaTecnicaturas) {
-                tablaTecnicaturas.style.display = '';
-            }
+    // Mostrar el filtro de búsqueda
+    let search = document.getElementById('searchs');
+    if (search) {
+        search.style.display = '';
+    }
 
-            // Ocultar el botón de regresar
-            let backButton = document.getElementById(`backButton`);
-            if (backButton) {
-                backButton.style.display = 'none';
-            }
-        }
+    // Eliminar el botón de volver
+    let backButton = document.getElementById('dynamicBackButton');
+    if (backButton) {
+        backButton.remove(); // ⚡ Acá se elimina correctamente
+    }
+}
     </script>
 
     {#Seccion de modales edit create  #}
@@ -517,6 +521,7 @@
         {% endfor %}
 
         <script>
+        
             function openModal(action, asignaturaId, tecnicaturaId) {
                 let url = '';
                 if (action === 'add') {
@@ -608,7 +613,8 @@
        
 
     </div>
-<button id="backButton" class="btn btn-back" style="display: none;">Volver a Tecnicas</button>
+
+
 
 {% endblock %}
 

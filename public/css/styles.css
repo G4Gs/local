@@ -1,5 +1,27 @@
 
- 
+
+.back {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .back:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+
+
 .logo-circular {
     width: 40px;
     height: 40px;
