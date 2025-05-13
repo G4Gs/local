@@ -351,7 +351,7 @@
                     <td>{{ carrera.getestudianteId() }}</td>
                     <td>{{ carrera.gettecnicaturaId() }}</td>
                     <td>
-                        <button class="btn-primary" onclick="showTable('tablaCarreraEnCurso', '{{ carrera.id }}', '{{ carrera.getestudianteId().id }}', '{{ carrera.gettecnicaturaId().id }}', '{{ carrera.getestudianteId().persona }}', '{{ carrera.gettecnicaturaId().nombre }}', '{{ carrera.getestudianteId().persona.nombre }}', '{{ carrera.getestudianteId().persona.apellido }}', '{{ carrera.getestudianteId().persona.fechaNacimiento|date('Y-m-d') }}', '{{ carrera.getestudianteId().persona.dniPasaporte }}', '{{ carrera.getestudianteId().persona.genero }}', '{{ carrera.getestudianteId().persona.email }}', '{{ carrera.getestudianteId().persona.telefono }}', '{{ carrera.getestudianteId().persona.partido }}', '{{ carrera.getestudianteId().persona.calle }}', '{{ carrera.getestudianteId().persona.numero }}', '{{ carrera.getestudianteId().persona.piso }}', '{{ carrera.getestudianteId().persona.departamento }}', '{{ carrera.getestudianteId().persona.pasillo }}', '{{ carrera.getestudianteId().persona.pais }}', '{{ carrera.getestudianteId().persona.localidad }}', '{{ carrera.getestudianteId().tituloSec }}', '{{ carrera.getestudianteId().escuelaSec }}', '{{ carrera.getestudianteId().anioEgreso }}')">Situación académica</button>
+                        <button class:"button" onclick="showTable('tablaCarreraEnCurso', '{{ carrera.id }}', '{{ carrera.getestudianteId().id }}', '{{ carrera.gettecnicaturaId().id }}', '{{ carrera.getestudianteId().persona }}', '{{ carrera.gettecnicaturaId().nombre }}', '{{ carrera.getestudianteId().persona.nombre }}', '{{ carrera.getestudianteId().persona.apellido }}', '{{ carrera.getestudianteId().persona.fechaNacimiento|date('Y-m-d') }}', '{{ carrera.getestudianteId().persona.dniPasaporte }}', '{{ carrera.getestudianteId().persona.genero }}', '{{ carrera.getestudianteId().persona.email }}', '{{ carrera.getestudianteId().persona.telefono }}', '{{ carrera.getestudianteId().persona.partido }}', '{{ carrera.getestudianteId().persona.calle }}', '{{ carrera.getestudianteId().persona.numero }}', '{{ carrera.getestudianteId().persona.piso }}', '{{ carrera.getestudianteId().persona.departamento }}', '{{ carrera.getestudianteId().persona.pasillo }}', '{{ carrera.getestudianteId().persona.pais }}', '{{ carrera.getestudianteId().persona.localidad }}', '{{ carrera.getestudianteId().tituloSec }}', '{{ carrera.getestudianteId().escuelaSec }}', '{{ carrera.getestudianteId().anioEgreso }}')">Situación académica</button>
                     </td>
                 </tr>
             {% else %}
@@ -410,7 +410,7 @@
                                 <td> 
                                     {# ¡Precaucion!, se toma de vistas para ver correctamente correlativas, ya que es responsable de crear tecnicaturas, asignaturas y correlativas de las mismas#}
                                     <a href="javascript:void(0)" onclick="openModal('view', {{ cursada.curso.asignatura.id }}, {{ cursada.curso.comision.tecnicatura.id }})">
-                                        <button type="button" class="btn-primary">Ver correlativas</button>
+                                        <button type="button" class:"button">Ver correlativas</button>
                                     </a>
                                 </td>
                                 <td></td>

@@ -25,31 +25,35 @@
 
         function showAsignaturas(tecnicaturaId) {
             // Ocultar todas las tablas de asignaturas
-            let tables = document.querySelectorAll('.tabla_home');
-            tables.forEach(table => table.style.display = 'none');
+    let tables = document.querySelectorAll('.tabla_home');
+    tables.forEach(table => table.style.display = 'none');
 
-            // Mostrar la tabla de asignaturas correspondiente
-            let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
-            if (asignaturasTable) {
-                asignaturasTable.style.display = '';
-            }
+    // Mostrar la tabla de asignaturas correspondiente
+    let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
+    if (asignaturasTable) {
+        asignaturasTable.style.display = '';
+    }
 
-            // Ocultar filtro tecnicaturas
-            let search = document.getElementById(`searchs`);
-            if (search) {
-                search.style.display = 'none';
-            }
+    // Ocultar filtro tecnicaturas
+    let search = document.getElementById(`searchs`);
+    if (search) {
+        search.style.display = 'none';
+    }
 
-            // Mostrar botón de regresar
-            let backButton = document.getElementById(`backButton`);
-            if (backButton) {
-                backButton.style.display = '';
-                // Asociar función para regresar
-                backButton.onclick = function() {
-                    hideAsignaturas(tecnicaturaId);
-                };
-            }
-        }
+    // Mostrar botón de regresar
+    let backButton = document.createElement('button');
+    backButton.textContent = 'Volver';
+    backButton.id = 'dynamicBackButton'; // Le ponemos ID para identificarlo
+    backButton.style = "background-color:rgb(61, 85, 235); color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 20px auto; display: block;";
+    backButton.onclick = function() {
+        hideAsignaturas(tecnicaturaId);
+    };
+
+    // Agregar el botón solo si no existe
+    if (!document.getElementById('dynamicBackButton')) {
+        document.getElementById('body-vistas').appendChild(backButton);
+    }
+}
 
         document.addEventListener('DOMContentLoaded', function() {
             // Twig evalúa si tecId está definido y no es nulo
@@ -62,30 +66,30 @@
         });
 
         function hideAsignaturas(tecnicaturaId) {
-            // Ocultar la tabla de asignaturas correspondiente
-            let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
-            if (asignaturasTable) {
-                asignaturasTable.style.display = 'none';
-            }
+          // Ocultar la tabla de asignaturas
+    let asignaturasTable = document.getElementById(`tablaAsignaturas_${tecnicaturaId}`);
+    if (asignaturasTable) {
+        asignaturasTable.style.display = 'none';
+    }
 
-            // Mostrar filtro tecnicaturas
-            let search = document.getElementById(`searchs`);
-            if (search) {
-                search.style.display = '';
-            }
+    // Mostrar la tabla principal de tecnicaturas
+    let tablaTecnicaturas = document.getElementById('tablaTecnicaturas');
+    if (tablaTecnicaturas) {
+        tablaTecnicaturas.style.display = '';
+    }
 
-            // Mostrar la tabla de tecnicaturas principal
-            let tablaTecnicaturas = document.getElementById('tablaTecnicaturas');
-            if (tablaTecnicaturas) {
-                tablaTecnicaturas.style.display = '';
-            }
+    // Mostrar el filtro de búsqueda
+    let search = document.getElementById('searchs');
+    if (search) {
+        search.style.display = '';
+    }
 
-            // Ocultar el botón de regresar
-            let backButton = document.getElementById(`backButton`);
-            if (backButton) {
-                backButton.style.display = 'none';
-            }
-        }
+    // Eliminar el botón de volver
+    let backButton = document.getElementById('dynamicBackButton');
+    if (backButton) {
+        backButton.remove(); // ⚡ Acá se elimina correctamente
+    }
+}
     </script>
 
     {#Seccion de modales edit create  #}
@@ -312,7 +316,7 @@
             <input type="text" id="searchNombre" onkeyup="filterTableTecnicatura()" placeholder="Buscar por nombre...">
             <label for="searchResolucion">Buscar por Resolucion:</label>
             <input type="text" id="searchResolucion" onkeyup="filterTableTecnicatura()" placeholder="Buscar por resolucion...">
-            <button onclick="openCreateModalTec()" class="btn-primary">Crear Tecnicatura</button>
+            <button onclick="openCreateModalTec()" class="button">Crear Tecnicatura</button>
         </div>
 
         <table class="tabla_home" id="tablaTecnicaturas" border="1">
@@ -333,7 +337,7 @@
                         <td>{{ tecnicatura.cantidadAsignaturas }}</td>
                         <td>{{ tecnicatura.numeroResolucion }}</td>
                         <td>
-                            <button onclick="showAsignaturas({{ tecnicatura.id }})" class="btn-primary">Ir</button>
+                            <button onclick="showAsignaturas({{ tecnicatura.id }})" class="button">Ir</button>
                         </td>
                     </tr>
                 {% else %}
@@ -362,7 +366,7 @@
                         </th>
                         <th>
                             <a href="{{ asset('archivos/tecnicaturas/' ~ tecnicatura.id ~ '.pdf') }}" target="_blank" class="pdf-link" data-pdf-path="{{ asset('archivos/tecnicaturas/' ~ tecnicatura.id ~ '.pdf') }}">
-                                <button type="button" class="btn btn-primary">Abrir PDF</button>
+                                <button type="button" class="button">Abrir PDF</button>
                             </a>
                             <span class="pdf-not-found" style="display: none;">No hay PDF</span>
                         </th>
@@ -442,7 +446,7 @@
                                     <a href="javascript:void(0)" onclick="openEditModal({{ asignaturas_anio2[i].id }}, {{ tecnicatura.id }}, 2)">
                                         <button type="button" class="btn-primary">Editar</button>
                                     </a>
-                                    <button id="guardar-asignatura-{{ asignaturas_anio2[i].id }}" class="btn-primary" onclick="document.getElementById('upload-file-asignatura-{{ asignaturas_anio2[i].id }}').click();">
+                                    <button id="guardar-asignatura-{{ asignaturas_anio2[i].id }}" class="button" onclick="document.getElementById('upload-file-asignatura-{{ asignaturas_anio2[i].id }}').click();">
                                         Guardar PDF
                                     </button>
                                     <!-- Formulario oculto para subir PDF de la asignatura -->
@@ -453,22 +457,22 @@
                                     </form>  
                                     <!-- Botón para ver PDF de la asignatura -->
                                     <a href="{{ asset('archivos/asignaturas/' ~ asignaturas_anio2[i].id ~ '.pdf') }}" target="_blank" class="pdf-link" data-pdf-path="{{ asset('archivos/asignaturas/' ~ asignaturas_anio2[i].id ~ '.pdf') }}">
-                                        <button type="button" class="btn btn-primary">Abrir PDF</button>
+                                        <button type="button" class="button">Abrir PDF</button>
                                     </a>
                                     <span class="pdf-not-found" style="display: none;">No hay PDF</span>
 
                                     <a href="javascript:void(0)" onclick="openModal('add', {{ asignaturas_anio2[i].id }}, {{ tecnicatura.id }})">
-                                        <button type="button" class="btn-primary">Agregar correlativa</button>
+                                        <button type="button" class="button">Agregar correlativa</button>
                                     </a>
 
                                     <a href="javascript:void(0)" onclick="openModal('view', {{ asignaturas_anio2[i].id }}, {{ tecnicatura.id }})">
-                                        <button type="button" class="btn-primary">Ver correlativas</button>
+                                        <button type="button" class="button">Ver correlativas</button>
                                     </a>
 
 
 
                                 {% else %}
-                                    <button onclick="openCreateModal({{ tecnicatura.id }}, 2)" class="btn-primary">Crear</button>
+                                    <button onclick="openCreateModal({{ tecnicatura.id }}, 2)" class="button">Crear</button>
                                 {% endif %}
 
 
@@ -517,6 +521,7 @@
         {% endfor %}
 
         <script>
+        
             function openModal(action, asignaturaId, tecnicaturaId) {
                 let url = '';
                 if (action === 'add') {
@@ -565,7 +570,8 @@
                 document.getElementById('correlativaModal').style.display = 'none';
                 document.getElementById('modalCorre').innerHTML = '';
             }
-
+       </div>
+    
         </script>
 
         <!-- Modal Correlativa -->
@@ -604,9 +610,16 @@
             </div>
         </div>
 
+ 
 
-        <button id="backButton" style="display: none;" class="btn-primary">TECNICATURAS</button>
+       
 
     </div>
+
+
+
 {% endblock %}
 
+ 
+ 
+ 
