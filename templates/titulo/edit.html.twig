@@ -3,11 +3,11 @@
 {% block title %}Edit Titulo{% endblock %}
 
 {% block body %}
-    <h1>Edit Titulo</h1>
+    <h1>Editar Título</h1>
 
-    {{ include('titulo/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('titulo/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_titulo_index') }}">back to list</a>
+    <a href="{{ path('app_titulo_index') }}">Regresar</a>
 
     {{ include('titulo/_delete_form.html.twig') }}
 {% endblock %}

@@ -8,6 +8,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType; 
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PersonaType extends AbstractType
 {
@@ -21,9 +26,9 @@ class PersonaType extends AbstractType
                 'widget' => 'choice', 
                 'format' => 'dd-MM-yyyy',
                 'attr' => [
-                    'class' => 'datepicker', 
+                    'class' => 'datepicker',
                 ],
-                'years' => range(date('Y') - 120, date('Y'), 1), // Rango de 120 años atrás hasta el año actual
+                'years' => range(2025, 2025 - 100), // De 2025 a 1925
             ])
             ->add('dni_pasaporte')
             ->add('genero', ChoiceType::class, [
@@ -36,7 +41,21 @@ class PersonaType extends AbstractType
                 'expanded' => false, 
             ])
             ->add('email')
-            ->add('telefono')
+            
+            
+            
+            ->add('telefono', TelType::class, [
+                'required' => false,
+                'attr' => [
+                    'placeholder' => '+54 11 1234-5678',
+                ],
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^\+\d{1,3}\s?\d{1,4}\s?\d{4,}$/',
+                        'message' => 'El número debe tener formato internacional, por ejemplo: +54 11 12345678',
+                    ]),
+                ],
+            ])
             ->add('partido')
             ->add('calle')
             ->add('numero')

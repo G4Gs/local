@@ -3,11 +3,11 @@
 {% block title %}Edit Pais{% endblock %}
 
 {% block body %}
-    <h1>Edit Pais</h1>
+    <h1>Editar Nacionalidad</h1>
 
-    {{ include('pais/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('pais/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_pais_index') }}">back to list</a>
+    <a href="{{ path('app_pais_index') }}">Regresar</a>
 
     {{ include('pais/_delete_form.html.twig') }}
 {% endblock %}

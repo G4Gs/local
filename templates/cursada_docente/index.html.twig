@@ -3,16 +3,16 @@
 {% block title %}CursadaDocente index{% endblock %}
 
 {% block body %}
-    <h1>CursadaDocente index</h1>
+    <h1>Listado de Cursadas por Docente</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Toma</th>
-                <th>Cese</th>
+                <th>ID</th>
+                <th>Fecha de Toma</th>
+                <th>Fecha de Cese</th>
                 <th>Curso</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,17 @@
                 <td>{{ cursada_docente.cese ? cursada_docente.cese|date('Y-m-d') : '' }}</td>
                 <td>{{ cursada_docente.curso }}</td>
                 <td>
-                    <a href="{{ path('app_cursada_docente_show', {'id': cursada_docente.id}) }}">show</a>
-                    <a href="{{ path('app_cursada_docente_edit', {'id': cursada_docente.id}) }}">edit</a>
+                    <a href="{{ path('app_cursada_docente_show', {'id': cursada_docente.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_cursada_docente_edit', {'id': cursada_docente.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_cursada_docente_new') }}">Create new</a>
+    <a href="{{ path('app_cursada_docente_new') }}">Crear Nueva Cursada Docente</a>
 {% endblock %}

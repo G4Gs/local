@@ -6,6 +6,8 @@ use App\Entity\CursadaDocente;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 class CursadaDocenteType extends AbstractType
 {
@@ -16,7 +18,16 @@ class CursadaDocenteType extends AbstractType
             ->add('cese')
             ->add('docente')
             ->add('revista')
-            ->add('licencia')
+            ->add('licencia', ChoiceType::class, [
+                'label' => '¿Tiene licencia?',
+                'choices'  => [
+                    'Sí' => true,
+                    'No' => false,
+                ],
+                'expanded' => true, // para mostrarlo como radios, poner false si preferís un select
+                'multiple' => false,
+            ])
+            
             ->add('curso')
         ;
     }

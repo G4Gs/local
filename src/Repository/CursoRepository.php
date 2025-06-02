@@ -38,6 +38,19 @@ class CursoRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    // src/Repository/CursoRepository.php
+
+  public function findByCicloLectivo(string $cicloLectivo): array
+{
+    return $this->createQueryBuilder('c')
+        ->join('c.comision', 'com')
+        ->andWhere('com.ciclo_lectivo = :ciclo')
+        ->setParameter('ciclo', $cicloLectivo)
+        ->getQuery()
+        ->getResult();
+}
+
+
 
 //    /**
 //     * @return Curso[] Returns an array of Curso objects

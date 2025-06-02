@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Cursada;
+use App\Repository\CursadaRepository;
 use App\Entity\Asistencia;
 use App\Form\AsistenciaType;
 use App\Repository\AsistenciaRepository;
@@ -20,10 +23,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-
+use Psr\Log\LoggerInterface;
 class VistasdocenteController extends AbstractController
 {
     #[Route('/vistasdocente', name: 'app_vistasdocente')]
+    #[Route('/nuevalista', name: 'app_nuevalista')]
     public function index(NotaRepository $notaRepository, CursadaDocenteRepository $cursadaDocenteRepository, CursoRepository $cursoRepository, Request $request): Response
     {
         // Recuperar `cursoId` de la sesión esto para cuando estoy cargando asignaturas y que no se pierda cursoId
@@ -142,8 +146,255 @@ class VistasdocenteController extends AbstractController
             'cursoId2' => $cursoId,
         ]);
     }
+
+    #[Route('/nuevalista', name: 'app_nuevalista')]
+    public function listaNueva(): Response
+    {
+        return $this->render('vistasdocente/nuevalista.html.twig');
+    }
+    
+    #[Route('/pasarlista/{curso_id}', name: 'app_pasarlista')]
+    public function pasarlista(int $curso_id, CursoRepository $cursoRepository, CursadaRepository $cursadaRepository): Response
+    {
+        $curso = $cursoRepository->find($curso_id);
+    
+        if (!$curso) {
+            throw $this->createNotFoundException('Curso no encontrado');
+        }
+    
+        $cursadas = $cursadaRepository->findBy(['curso' => $curso]);
+    
+        return $this->render('vistasdocente/pasarlista.html.twig', [
+            'curso' => $curso,
+            'cursadas' => $cursadas,
+            
+        ]);
+    }
+
+
+    #[Route('/guardar-asistencia', name: 'guardar_asistencia', methods: ['POST'])]
+public function guardarAsistencia(Request $request, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse
+{
+    $data = json_decode($request->getContent(), true);
+
+    $logger->info('Datos recibidos para guardar asistencia', ['data' => $data]);
+
+    // Crear objeto DateTimeZone con zona horaria local
+    $zonaHoraria = new \DateTimeZone('America/Argentina/Buenos_Aires');
+
+    foreach ($data as $asistenciaData) {
+        $logger->info('Procesando asistencia', ['asistenciaData' => $asistenciaData]);
+
+        $cursada = $em->getRepository(Cursada::class)->find($asistenciaData['cursada_id']);
+
+        if (!$cursada) {
+            $logger->error('Cursada no encontrada', ['cursada_id' => $asistenciaData['cursada_id']]);
+            continue;
+        }
+
+        // Usar zona horaria explícitamente al crear la fecha
+        $fecha = \DateTime::createFromFormat('Y-m-d', $asistenciaData['fecha'], $zonaHoraria);
+        $fecha->setTime(0, 0, 0); // Normalizar a medianoche
+
+        $asistenciaExistente = $em->getRepository(Asistencia::class)->findOneBy([
+            'cursada' => $cursada,
+            'fecha' => $fecha
+        ]);
+
+        if ($asistenciaExistente) {
+            $logger->info('Actualizando asistencia existente', ['asistenciaExistente' => $asistenciaExistente]);
+
+            $asistenciaExistente->setAsistencia($asistenciaData['estado']);
+            $asistenciaExistente->setObservacion($asistenciaData['observacion']);
+            $em->persist($asistenciaExistente);
+        } else {
+            $logger->info('Creando nueva asistencia', ['asistenciaData' => $asistenciaData]);
+
+            $asistencia = new Asistencia();
+            $asistencia->setCursada($cursada);
+            $asistencia->setFecha($fecha);
+            $asistencia->setAsistencia($asistenciaData['estado']);
+            $asistencia->setObservacion($asistenciaData['observacion']);
+            $em->persist($asistencia);
+        }
+    }
+
+    $em->flush();
+
+    return new JsonResponse(['status' => 'success'], 200);
+}
+
+    
+  #[Route('/actualizar-lista-alumnos/{curso_id}', name: 'actualizar_lista_alumnos', methods: ['GET'])]
+public function actualizarListaAlumnos(
+    int $curso_id,
+    CursoRepository $cursoRepository,
+    CursadaRepository $cursadaRepository
+): JsonResponse {
+    // Establecer la zona horaria de Buenos Aires para evitar desfases
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+    $curso = $cursoRepository->find($curso_id);
+
+    if (!$curso) {
+        return new JsonResponse(['error' => 'Curso no encontrado'], 404);
+    }
+
+    $cursadas = $cursadaRepository->findBy(['curso' => $curso]);
+
+    $data = [];
+    $hoy = new \DateTime();
+    $hoyFormato = $hoy->format('Y-m-d');
+
+    foreach ($cursadas as $cursada) {
+        $alumno = $cursada->getAlumno();
+        $asistencias = $cursada->getAsistencias();
+
+        $asistenciaHoy = null;
+
+        foreach ($asistencias as $a) {
+            if ($a->getFecha()->format('Y-m-d') === $hoyFormato) {
+                $asistenciaHoy = $a;
+                break;
+            }
+        }
+
+        // Estadísticas
+        $presentes = 0;
+        $ausentes = 0;
+        $mediaFaltas = 0;
+        $justificadas = 0;
+
+        foreach ($asistencias as $a) {
+            $estado = strtolower($a->getAsistencia());
+            if ($estado === 'presente') {
+                $presentes++;
+            } elseif ($estado === 'ausente') {
+                $ausentes++;
+            } elseif ($estado === 'media falta') {
+                $mediaFaltas++;
+            } elseif ($estado === 'justificada') {
+                $justificadas++;
+            }
+        }
+
+        $total = $presentes + $ausentes + $mediaFaltas + $justificadas;
+        $porcentajePresente = $total > 0 ? (($presentes + $mediaFaltas * 0.5) / $total) * 100 : 0;
+        $porcentajeAusente = $total > 0 ? (($ausentes + $mediaFaltas * 0.5) / $total) * 100 : 0;
+        $porcentajeJustificada = $total > 0 ? ($justificadas / $total) * 100 : 0;
+
+        $data[] = [
+            'id' => $cursada->getId(),
+            'nombre' => $alumno->getNombre(),
+            'apellido' => $alumno->getApellido(),
+            'dni' => $alumno->getDniPasaporte(),
+            'asistencia' => $asistenciaHoy ? $asistenciaHoy->getAsistencia() : 'No marcado',
+            'observacion' => $asistenciaHoy ? $asistenciaHoy->getObservacion() : '',
+            'fecha_asistencia' => $asistenciaHoy ? $asistenciaHoy->getFecha()->format('Y-m-d') : null,
+            'estadisticas' => [
+                'presentes' => $presentes,
+                'ausentes' => $ausentes,
+                'media_faltas' => $mediaFaltas,
+                'justificadas' => $justificadas,
+                'total' => $total,
+                'porcentaje_presente' => round($porcentajePresente, 2),
+                'porcentaje_ausente' => round($porcentajeAusente, 2),
+                'porcentaje_justificada' => round($porcentajeJustificada, 2),
+            ],
+        ];
+    }
+
+    return new JsonResponse([
+        'fecha_backend' => $hoyFormato,
+        'data' => $data,
+    ]);
+}
+
+
+    #[Route('/estadisticas/{curso_id}', name: 'estadisticas', methods: ['GET'])]
+public function actualizarestadisticas(
+    int $curso_id,
+    CursoRepository $cursoRepository,
+    CursadaRepository $cursadaRepository
+): JsonResponse {
+    // Establecer la zona horaria de Buenos Aires para evitar desfases
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+    $curso = $cursoRepository->find($curso_id);
+
+    if (!$curso) {
+        return new JsonResponse(['error' => 'Curso no encontrado'], 404);
+    }
+
+    $cursadas = $cursadaRepository->findBy(['curso' => $curso]);
+
+    $data = [];
+    $hoy = new \DateTime();
+    $hoyFormato = $hoy->format('Y-m-d');
+
+    foreach ($cursadas as $cursada) {
+        $alumno = $cursada->getAlumno();
+        $asistencias = $cursada->getAsistencias();
+
+        $asistenciaHoy = null;
+
+        foreach ($asistencias as $a) {
+            if ($a->getFecha()->format('Y-m-d') === $hoyFormato) {
+                $asistenciaHoy = $a;
+                break;
+            }
+        }
+
+        // Estadísticas
+        $presentes = 0;
+        $ausentes = 0;
+        $mediaFaltas = 0;
+        $justificadas = 0;
+
+        foreach ($asistencias as $a) {
+            $estado = strtolower($a->getAsistencia());
+            if ($estado === 'presente') {
+                $presentes++;
+            } elseif ($estado === 'ausente') {
+                $ausentes++;
+            } elseif ($estado === 'media falta') {
+                $mediaFaltas++;
+            } elseif ($estado === 'justificada') {
+                $justificadas++;
+            }
+        }
+
+        $total = $presentes + $ausentes + $mediaFaltas + $justificadas;
+        $porcentajePresente = $total > 0 ? (($presentes + $mediaFaltas * 0.5) / $total) * 100 : 0;
+        $porcentajeAusente = $total > 0 ? (($ausentes + $mediaFaltas * 0.5) / $total) * 100 : 0;
+        $porcentajeJustificada = $total > 0 ? ($justificadas / $total) * 100 : 0;
+
+        $data[] = [
+            'id' => $cursada->getId(),
+            'nombre' => $alumno->getNombre(),
+            'apellido' => $alumno->getApellido(),
+            'dni' => $alumno->getDniPasaporte(),
+            'asistencia' => $asistenciaHoy ? $asistenciaHoy->getAsistencia() : 'No marcado',
+            'observacion' => $asistenciaHoy ? $asistenciaHoy->getObservacion() : '',
+            'fecha_asistencia' => $asistenciaHoy ? $asistenciaHoy->getFecha()->format('Y-m-d') : null,
+            'estadisticas' => [
+                'presentes' => $presentes,
+                'ausentes' => $ausentes,
+                'media_faltas' => $mediaFaltas,
+                'justificadas' => $justificadas,
+                'total' => $total,
+                'porcentaje_presente' => round($porcentajePresente, 2),
+                'porcentaje_ausente' => round($porcentajeAusente, 2),
+                'porcentaje_justificada' => round($porcentajeJustificada, 2),
+            ],
+        ];
+    }
+
+    return new JsonResponse($data);
+}
     
 }
 
 
+    
 

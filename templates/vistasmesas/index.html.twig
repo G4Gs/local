@@ -163,8 +163,8 @@
             <thead>
                 <tr>
                     <th>Inscriptos a Finales</th>
-                    <th>Crear Mesas</th>
-                    <th>Volcar Notas</th>
+                    <th>Fechas de Finales</th>
+                    <th>Notas</th>
                 </tr>
             </thead>
             <tbody>
@@ -174,11 +174,11 @@
                     </td>
                     <td>
                         <button class:"button" onclick="showTable('tablaMesas')">Ver</button>
-                        <button onclick="openModal('mesa')"class:"button">Crear</button>
+                        <button onclick="openModal('mesa')"class:"button">Establecer fecha</button>
                     </td>
                     <td>
                         <buttonclass:"button" onclick="showTable('tablaNotasFinales')">Ver</button>
-                        <button onclick="openModal('notaFinal')" class:"button">Crear</button>
+                        <button onclick="openModal('notaFinal')" class:"button">Cargar Nota</button>
                     </td>
 
 
@@ -222,7 +222,7 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="3">no records found</td>
+                        <td colspan="3">No se encontraron registros</td>
                     </tr>
                 {% endfor %}>
             </tbody>
@@ -235,27 +235,27 @@
                     <th colspan="6">Mesas de Finales</th>
                 </tr>
                 <tr>
+                    <th>Asignatura</th>
                     <th>Fecha</th>
                     <th>Presidente</th>
-                    <th>Vocal1</th>
-                    <th>Vocal2</th>
+                    <th>Primer Vocal</th>
+                    <th>Segundo Vocal</th>
                     <th>Tecnicatura</th>
-                    <th>Asignatura</th>
                 </tr>
             </thead>
             <tbody>
             {% for examen_final in examen_finals %}
                 <tr>
+                    <td>{{ examen_final.getAsignaturaId() }}</td>
                     <td>{{ examen_final.fecha ? examen_final.fecha|date('Y-m-d') : '' }}</td>
                     <td>{{ examen_final.getPresidenteId()}}</td>
                     <td>{{ examen_final.getVocal1Id() }}</td>
                     <td>{{ examen_final.getVocal2Id() }}</td>
                     <td>{{ examen_final.getAsignaturaId().tecnicatura }}</td>
-                    <td>{{ examen_final.getAsignaturaId() }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records found</td>
+                    <td colspan="3">No se encontraron registros</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -289,7 +289,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">no records found</td>
+                    <td colspan="5">No se encontraron registros</td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -3,22 +3,24 @@
 {% block title %}Alumno index{% endblock %}
 
 {% block body %}
-    <h1>Alumnos</h1>
+    <h1>Listado de Estudiantes</h1>
 
     <table class="table">
         <thead>
             <tr>
-                
-                <th>Titulo_sec</th>
-                <th>Escuela_sec</th>
-                <th>Anio_egreso</th>
-                <th>actions</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Título Secundaria</th>
+                <th>Escuela Secundaria</th>
+                <th>Año de Egreso</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for alumno in alumnos %}
             <tr>
-                
+                <td>    </td>
+                <td>    </td>
                 <td>{{ alumno.tituloSec }}</td>
                 <td>{{ alumno.escuelaSec }}</td>
                 <td>{{ alumno.anioEgreso }}</td>
@@ -29,11 +31,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">No se encontraron registros</td>
+                <td colspan="5"> No se encontraron registros </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_alumno_new') }}">Nuevo Alumno</a>
+    <a href="{{ path('app_alumno_new') }}"> Crear Nuevo Estudiante </a>
 {% endblock %}

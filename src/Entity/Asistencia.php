@@ -14,9 +14,7 @@ class Asistencia
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $fecha = null;
-
+  
     #[ORM\Column(length: 20)]
     private ?string $asistencia = null;
 
@@ -27,22 +25,16 @@ class Asistencia
     #[ORM\JoinColumn(nullable: false)]
     private ?Cursada $cursada = null;
 
+    #[ORM\ManyToOne(inversedBy: 'asistencias')]
+    private ?CalendarioClase $CalendarioClase = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFecha(): ?\DateTimeInterface
-    {
-        return $this->fecha;
-    }
+   
 
-    public function setFecha(\DateTimeInterface $fecha): static
-    {
-        $this->fecha = $fecha;
-
-        return $this;
-    }
 
     public function getAsistencia(): ?string
     {
@@ -76,6 +68,18 @@ class Asistencia
     public function setCursada(?Cursada $cursada): static
     {
         $this->cursada = $cursada;
+
+        return $this;
+    }
+
+    public function getCalendarioClase(): ?CalendarioClase
+    {
+        return $this->CalendarioClase;
+    }
+
+    public function setCalendarioClase(?CalendarioClase $CalendarioClase): static
+    {
+        $this->CalendarioClase = $CalendarioClase;
 
         return $this;
     }

@@ -6,13 +6,12 @@ namespace App\Form;
 use App\Entity\Curso;
 use App\Entity\Asignatura;
 use App\Entity\Comision;
-use App\Entity\Cursada;
-use App\Entity\CursadaDocente;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 
 class CursoType extends AbstractType
@@ -20,8 +19,8 @@ class CursoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ciclo_lectivo')
-            ->add('horario')
+        
+        
             ->add('asignatura', EntityType::class, [
                 'class' => Asignatura::class,
                 'choice_label' => 'nombre', // Nombre del campo a mostrar en el select
@@ -34,6 +33,8 @@ class CursoType extends AbstractType
                 'placeholder' => 'Selecciona una comision',
                 'expanded' => false,
             ])
+            ->add('CUPOF')
+
         ;
     }
 

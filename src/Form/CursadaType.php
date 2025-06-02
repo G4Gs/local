@@ -4,11 +4,13 @@ namespace App\Form;
 
 use App\Entity\Cursada;
 use App\Entity\Asignatura;
+use App\Entity\Modalidad;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CursadaType extends AbstractType
 {
@@ -22,21 +24,22 @@ class CursadaType extends AbstractType
             ->add('curso')
         ;*/
         $builder
-        ->add('condicion', TextType::class, [
-            'data' => 'regular', // Valor predeterminado
+        ->add('condicion', ChoiceType::class, [
+            'choices' => [
+                'Regular' => 'regular',
+                'Libre' => 'libre',
+                'Oyente' => 'oyente',
+            ],
             'label' => 'Condición'
         ])
         ->add('alumno')
-        ->add('modalidad', TextType::class, [
-            'data' => 'presencial', // Valor predeterminado
+        ->add('modalidad', EntityType::class, [
+            'class' => Modalidad::class,
+            'placeholder' => 'Seleccione una modalidad',
             'label' => 'Modalidad'
         ])
         ->add('nota_id')
-        ->add('curso')
-    ;
-
-
-
+        ->add('curso');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

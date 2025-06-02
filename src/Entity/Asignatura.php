@@ -46,6 +46,9 @@ class Asignatura
     #[ORM\OneToMany(mappedBy: 'asignatura', targetEntity: Curso::class)]
     private Collection $cursos;
 
+    
+
+    
 
 
     public function __construct()
@@ -260,5 +263,10 @@ class Asignatura
 
         return $this;
     }
+
     
+
+   
+
+  
 }

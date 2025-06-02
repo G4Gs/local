@@ -3,14 +3,14 @@
 {% block title %}Telefono index{% endblock %}
 
 {% block body %}
-    <h1>Telefono index</h1>
+    <h1>Listado de Teléfonos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Numero</th>
-                <th>actions</th>
+                <th>ID</th>
+                <th>Número</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,17 @@
                 <td>{{ telefono.id }}</td>
                 <td>{{ telefono.numero }}</td>
                 <td>
-                    <a href="{{ path('app_telefono_show', {'id': telefono.id}) }}">show</a>
-                    <a href="{{ path('app_telefono_edit', {'id': telefono.id}) }}">edit</a>
+                    <a href="{{ path('app_telefono_show', {'id': telefono.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_telefono_edit', {'id': telefono.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_telefono_new') }}">Create new</a>
+    <a href="{{ path('app_telefono_new') }}">Crear Nuevo Teléfono</a>
 {% endblock %}

@@ -3,14 +3,14 @@
 {% block title %}Curso index{% endblock %}
 
 {% block body %}
-    <h1>Curso index</h1>
+    <h1>Listado de Cursos</h1>
 {#
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Horario</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,13 +19,13 @@
                 <td>{{ curso.id }}</td>
                 <td>{{ curso.horario }}</td>
                 <td>
-                    <a href="{{ path('app_curso_show', {'id': curso.id}) }}">show</a>
-                    <a href="{{ path('app_curso_edit', {'id': curso.id}) }}">edit</a>
+                    <a href="{{ path('app_curso_show', {'id': curso.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_curso_edit', {'id': curso.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -33,12 +33,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Ciclo Lectivo</th>
             <th>Horario</th>
             <th>Asignatura</th>
-            <th>Comision</th>
-            <th>Actions</th>
+            <th>Comisión</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -50,18 +50,18 @@
             <td>{{ curso.getAsignatura.nombre }}</td>
             <td>{{ curso.getComision.comision }}</td>
             <td>
-                <a href="{{ path('app_curso_show', {'id': curso.id}) }}">show</a>
-                <a href="{{ path('app_curso_edit', {'id': curso.id}) }}">edit</a>
+                <a href="{{ path('app_curso_show', {'id': curso.id}) }}">Mostrar</a>
+                <a href="{{ path('app_curso_edit', {'id': curso.id}) }}">Editar</a>
             </td>
         </tr>
     {% else %}
         <tr>
-            <td colspan="7">no records found</td>
+            <td colspan="7">No se encontraron registros</td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
 
-    <a href="{{ path('app_curso_new') }}">Create new</a>
+    <a href="{{ path('app_curso_new') }}">Crear Nuevo Curso</a>
 {% endblock %}

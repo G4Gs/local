@@ -3,16 +3,16 @@
 {% block title %}ExamenAlumno index{% endblock %}
 
 {% block body %}
-    <h1>ExamenAlumno index</h1>
+    <h1>Listado de Exámenes de Alumnos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nota</th>
                 <th>Tomo</th>
                 <th>Folio</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,17 @@
                 <td>{{ examen_alumno.tomo }}</td>
                 <td>{{ examen_alumno.folio }}</td>
                 <td>
-                    <a href="{{ path('app_examen_alumno_show', {'id': examen_alumno.id}) }}">show</a>
-                    <a href="{{ path('app_examen_alumno_edit', {'id': examen_alumno.id}) }}">edit</a>
+                    <a href="{{ path('app_examen_alumno_show', {'id': examen_alumno.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_examen_alumno_edit', {'id': examen_alumno.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_examen_alumno_new') }}">Create new</a>
+    <a href="{{ path('app_examen_alumno_new') }}">Crear Nuevo Examen de Alumno</a>
 {% endblock %}

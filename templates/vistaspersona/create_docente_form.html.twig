@@ -1,6 +1,6 @@
 {{ form_start(form, {'attr': {'id': 'form-crea-docnete', 'action': path('crear_docente' )}}) }}
-    {{ form_row(form.persona) }} 
-    {{ form_row(form.foja) }} 
+    {{ form_row(form.persona, {'label': 'Persona'}) }} 
+    {{ form_row(form.foja, {'label': 'Foja'}) }} 
     <button type="submit"class:"button">Guardar</button>
 {{ form_end(form) }}
 

@@ -15,12 +15,6 @@ class Curso
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $ciclo_lectivo = null;
-
-    #[ORM\Column(length: 15)]
-    private ?string $horario = null;
-
     #[ORM\ManyToOne(targetEntity: Asignatura::class, inversedBy: 'cursos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Asignatura $asignatura = null;
@@ -35,39 +29,25 @@ class Curso
     #[ORM\OneToMany(mappedBy: 'curso', targetEntity: CursadaDocente::class)]
     private Collection $cursadaDocentes;
 
+    #[ORM\Column(length: 30)]
+    private ?string $CUPOF = null;
+    #[ORM\OneToMany(mappedBy: 'Asignatura', targetEntity: Horario::class)]
+    private Collection $horarios;
+
+    #[ORM\OneToMany(mappedBy: 'Curso', targetEntity: CalendarioClase::class)]
+    private Collection $calendarioClases;
+
+
     public function __construct()
     {
         $this->cursadas = new ArrayCollection();
         $this->cursadaDocentes = new ArrayCollection();
+        $this->calendarioClases = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCicloLectivo(): ?int
-    {
-        return $this->ciclo_lectivo;
-    }
-
-    public function setCicloLectivo(int $ciclo_lectivo): static
-    {
-        $this->ciclo_lectivo = $ciclo_lectivo;
-
-        return $this;
-    }
-
-    public function getHorario(): ?string
-    {
-        return $this->horario;
-    }
-
-    public function setHorario(string $horario): self
-    {
-        $this->horario = $horario;
-
-        return $this;
     }
 
     public function getAsignatura(): ?Asignatura
@@ -115,7 +95,6 @@ class Curso
     public function removeCursada(Cursada $cursada): static
     {
         if ($this->cursadas->removeElement($cursada)) {
-            // set the owning side to null (unless already changed)
             if ($cursada->getCurso() === $this) {
                 $cursada->setCurso(null);
             }
@@ -145,7 +124,6 @@ class Curso
     public function removeCursadaDocente(CursadaDocente $cursadaDocente): static
     {
         if ($this->cursadaDocentes->removeElement($cursadaDocente)) {
-            // set the owning side to null (unless already changed)
             if ($cursadaDocente->getCurso() === $this) {
                 $cursadaDocente->setCurso(null);
             }
@@ -156,8 +134,77 @@ class Curso
 
     public function __toString(): string
     {
-        return sprintf('%s (%d) %s', $this->ciclo_lectivo, $this->horario, $this->getAsignatura());
+        return (string) $this->getAsignatura();
+    }
+    public function getCUPOF(): ?string
+    {
+        return $this->CUPOF;
     }
 
-}
+    public function setCUPOF(string $CUPOF): static
+    {
+        $this->CUPOF = $CUPOF;
 
+        return $this;
+    }
+    
+ /**
+     * @return Collection<int, Horario>
+     */
+    public function getHorarios(): Collection
+    {
+        return $this->horarios;
+    }
+
+    public function addHorario(Horario $horario): static
+    {
+        if (!$this->horarios->contains($horario)) {
+            $this->horarios->add($horario);
+            $horario->setAsignatura($this);
+        }
+
+        return $this;
+    }
+      public function removeHorario(Horario $horario): static
+    {
+        if ($this->horarios->removeElement($horario)) {
+            // set the owning side to null (unless already changed)
+            if ($horario->getAsignatura() === $this) {
+                $horario->setAsignatura(null);
+            }
+        }
+
+        return $this;
+    }
+
+      /**
+       * @return Collection<int, CalendarioClase>
+       */
+      public function getCalendarioClases(): Collection
+      {
+          return $this->calendarioClases;
+      }
+
+      public function addCalendarioClase(CalendarioClase $calendarioClase): static
+      {
+          if (!$this->calendarioClases->contains($calendarioClase)) {
+              $this->calendarioClases->add($calendarioClase);
+              $calendarioClase->setCurso($this);
+          }
+
+          return $this;
+      }
+
+      public function removeCalendarioClase(CalendarioClase $calendarioClase): static
+      {
+          if ($this->calendarioClases->removeElement($calendarioClase)) {
+              // set the owning side to null (unless already changed)
+              if ($calendarioClase->getCurso() === $this) {
+                  $calendarioClase->setCurso(null);
+              }
+          }
+
+          return $this;
+      }
+    
+}

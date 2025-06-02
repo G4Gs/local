@@ -3,15 +3,15 @@
 {% block title %}Habilitante index{% endblock %}
 
 {% block body %}
-    <h1>Habilitante index</h1>
+    <h1>Listado de Habilitantes</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Anio_egreso</th>
+                <th>ID</th>
+                <th>Año de Egreso</th>
                 <th>Promedio</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +21,17 @@
                 <td>{{ habilitante.anioEgreso }}</td>
                 <td>{{ habilitante.promedio }}</td>
                 <td>
-                    <a href="{{ path('app_habilitante_show', {'id': habilitante.id}) }}">show</a>
-                    <a href="{{ path('app_habilitante_edit', {'id': habilitante.id}) }}">edit</a>
+                    <a href="{{ path('app_habilitante_show', {'id': habilitante.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_habilitante_edit', {'id': habilitante.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_habilitante_new') }}">Create new</a>
+    <a href="{{ path('app_habilitante_new') }}">Crear Nueva Habilitante</a>
 {% endblock %}

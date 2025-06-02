@@ -3,12 +3,12 @@
 {% block title %}Tecnicatura{% endblock %}
 
 {% block body %}
-    <h1>Tecnicatura</h1>
+    <h1>Mostrando Tecnicaturas</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ tecnicatura.id }}</td>
             </tr>
             <tr>
@@ -16,23 +16,23 @@
                 <td>{{ tecnicatura.nombre }}</td>
             </tr>
             <tr>
-                <th>Duracion</th>
+                <th>Duración</th>
                 <td>{{ tecnicatura.duracion }}</td>
             </tr>
             <tr>
-                <th>Cantidad_asignaturas</th>
+                <th>Cantidad de Asignaturas</th>
                 <td>{{ tecnicatura.cantidadAsignaturas }}</td>
             </tr>
             <tr>
-                <th>Numero_resolucion</th>
+                <th>Número de Resolución</th>
                 <td>{{ tecnicatura.numeroResolucion }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_tecnicatura_index') }}">back to list</a>
+    <a href="{{ path('app_tecnicatura_index') }}">Regresar</a>
 
-    <a href="{{ path('app_tecnicatura_edit', {'id': tecnicatura.id}) }}">edit</a>
+    <a href="{{ path('app_tecnicatura_edit', {'id': tecnicatura.id}) }}">Editar</a>
 
     {{ include('tecnicatura/_delete_form.html.twig') }}
 {% endblock %}

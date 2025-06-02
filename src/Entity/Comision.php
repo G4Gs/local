@@ -35,6 +35,9 @@ class Comision
     #[ORM\OneToMany(mappedBy: 'comision', targetEntity: Curso::class)]
     private Collection $cursos;
 
+    #[ORM\Column(length: 4)]
+    private ?string $ciclo_lectivo = null;
+
 
     public function getId(): ?int
     {
@@ -133,6 +136,18 @@ class Comision
                 $curso->setAsignatura(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCicloLectivo(): ?string
+    {
+        return $this->ciclo_lectivo;
+    }
+
+    public function setCicloLectivo(string $ciclo_lectivo): static
+    {
+        $this->ciclo_lectivo = $ciclo_lectivo;
 
         return $this;
     }

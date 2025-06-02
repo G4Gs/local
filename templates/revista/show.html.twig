@@ -3,24 +3,24 @@
 {% block title %}Revista{% endblock %}
 
 {% block body %}
-    <h1>Revista</h1>
+    <h1>Mostrando Revistas</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ revistum.id }}</td>
             </tr>
             <tr>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <td>{{ revistum.descripcion }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_revista_index') }}">back to list</a>
+    <a href="{{ path('app_revista_index') }}">Regresar</a>
 
-    <a href="{{ path('app_revista_edit', {'id': revistum.id}) }}">edit</a>
+    <a href="{{ path('app_revista_edit', {'id': revistum.id}) }}">Editar</a>
 
     {{ include('revista/_delete_form.html.twig') }}
 {% endblock %}

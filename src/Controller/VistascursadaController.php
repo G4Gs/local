@@ -56,7 +56,7 @@ class VistascursadaController extends AbstractController
         // Filtrar los cursos por ciclo lectivo si se proporciona
         if ($cicloLectivo) {
             // Filtrar los cursos en base al ciclo lectivo
-            $cursos = $cursoRepository->findBy(['ciclo_lectivo' => $cicloLectivo]);
+             $cursos = $cursoRepository->findByCicloLectivo($cicloLectivo);
         } else {
             // Si no se proporciona el ciclo lectivo, obtener todos los cursos
             $cursos = $cursoRepository->findAll();
@@ -395,51 +395,80 @@ class VistascursadaController extends AbstractController
 
     #[Route('/curso/{tecnicatura_id?}/comision/{comision_id?}', name: 'crear_curso', methods: ['GET', 'POST'])]
     public function createCurso(Request $request, CursoRepository $cursoRepository): Response
-    {
-        $tecnicatura_id = $request->attributes->get('tecnicatura_id', null);
-        $comision_id = $request->attributes->get('comision_id', null);
+{
+    // Obtener los valores del request
+    $tecnicatura_id = $request->attributes->get('tecnicatura_id', null);
+    $comision_id = $request->attributes->get('comision_id', null);
 
-        // Almacenar `tecId` y `comId` en la sesión
-        $session = $request->getSession();
-        if ($tecnicatura_id !== null) {
-            $session->set('tecId', $tecnicatura_id);
+    // Verificar si los valores están en la sesión
+    $session = $request->getSession();
+    error_log('Tecnciatura ID: ' . ($tecnicatura_id !== null ? $tecnicatura_id : 'No definido'));
+    error_log('Comision ID: ' . ($comision_id !== null ? $comision_id : 'No definido'));
+
+    if ($tecnicatura_id !== null) {
+        $session->set('tecId', $tecnicatura_id);
+    }
+    if ($comision_id !== null) {
+        $session->set('comId', $comision_id);
+    }
+
+    $tecId = $session->get('tecId', null);
+    $comId = $session->get('comId', null);
+
+    // Log de sesión
+    error_log('TEC ID en sesión: ' . ($tecId !== null ? $tecId : 'No definido'));
+    error_log('COM ID en sesión: ' . ($comId !== null ? $comId : 'No definido'));
+
+    $curso = new Curso();
+    $form = $this->createForm(CursoType::class, $curso);
+    $form->handleRequest($request);
+
+    // Verificar si el formulario se envió correctamente
+    if ($form->isSubmitted() && $form->isValid()) {
+        error_log('Formulario enviado y válido');
+
+            // Obtener los datos del formulario
+        $inicio = $form->get('inicio')->getData();
+        $fin = $form->get('fin')->getData();
+
+        // Log de los valores de inicio y fin
+        error_log('Inicio: ' . ($inicio ? $inicio->format('H:i') : 'No definido'));
+        error_log('Fin: ' . ($fin ? $fin->format('H:i') : 'No definido'));
+
+        // Verificar si ambos valores están definidos
+        if ($inicio && $fin) {
+            // Formatear el horario y asignarlo al curso
+            $curso->setHorario($inicio->format('H:i') . ' - ' . $fin->format('H:i'));
+            error_log('Horario validado y asignado: ' . $curso->getHorario());
+        } else {
+            error_log('Faltan valores de horario');
         }
-        if ($comision_id !== null) {
-            $session->set('comId', $comision_id);
-        }
 
-        $tecId = $session->get('tecId', null);
-        $comId = $session->get('comId', null);
+        // Guardar el curso
+        $cursoRepository->save($curso, true);
 
-        $curso = new Curso();
-        $form = $this->createForm(CursoType::class, $curso);
-        $form->handleRequest($request);
+        return $this->redirectToRoute('app_vistascursada', [], Response::HTTP_SEE_OTHER);
+    }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-
-            // Guardar la cursada (y la nota asociada debido a la relación en cascada)
-            $cursoRepository->save($curso, true);
-
-            return $this->redirectToRoute('app_vistascursada', [], Response::HTTP_SEE_OTHER);
-        }
-
-        if ($request->isXmlHttpRequest()) {
-            return $this->render('vistascursada/create_form_curso.html.twig', [
-                'curso' => $curso,
-                'form' => $form->createView(),
-                'tecId' => $tecId,
-                'comId' => $comId,
-            ]);
-        }
-
-        return $this->renderForm('vistascursada/create_form_curso.html.twig', [
+    // Manejo de AJAX (si aplica)
+    if ($request->isXmlHttpRequest()) {
+        return $this->render('vistascursada/create_form_curso.html.twig', [
             'curso' => $curso,
-            'form' => $form,
+            'form' => $form->createView(),
             'tecId' => $tecId,
             'comId' => $comId,
         ]);
     }
+
+    // Retorno de la vista para renderizar el formulario
+    return $this->renderForm('vistascursada/create_form_curso.html.twig', [
+        'curso' => $curso,
+        'form' => $form,
+        'tecId' => $tecId,
+        'comId' => $comId,
+    ]);
+}
+    
 
     #[Route('/editarcurso/{curso_id}/', name: 'editar_curso', methods: ['GET', 'POST'])]
     public function editarCurso(Request $request, CursoRepository $cursoRepository, $curso_id): Response

@@ -8,6 +8,8 @@
 			<link rel="stylesheet" href="{{asset('css/oter.css')}}">
 			<link rel="stylesheet" href="{{asset('css/container.css')}}">
 			<link rel="stylesheet" href="{{asset('css/styles.css')}}">
+			
+				
 		{% endblock %}
 	</head>
 	<body
@@ -56,15 +58,10 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_vistasestudiante')}}" >
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custin">Alumnos</span>
+						<span class="custin">Estudiantes</span>
 					</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
-						<i class="fas fa-fw fa-folder"></i>
-						<span class="custin">Tecnicaturas y Asignaturas</span>
-					</a>
-				</li>
+				
 				<li class="nav-item">
 					<a class="nav-link" href="#" onclick="clearSessionCursos(); return false;">
 						<i class="fas fa-fw fa-folder"></i>
@@ -94,6 +91,12 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" id="clearSessionLink" href="#" onclick="clearSessionTecnicaturas(); return false;">
+						<i class="fas fa-fw fa-folder"></i>
+						<span class="custin">Tecnicaturas y Asignaturas</span>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="{{ path('app_user_index')}}">
 						<i class="fas fa-fw fa-folder"></i>
 						<span class="custin">Usuarios</span>
@@ -113,22 +116,22 @@
 					<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<h6 class="collapse-header">Datos de carreras</h6>
-							<a class="collapse-item" href="{{ path('app_carreras_index')}}">EstudianteXcarreras</a>
+							<a class="collapse-item" href="{{ path('app_carreras_index')}}">Estudiante Por Carrera</a>
 							<a class="collapse-item" href="{{ path('app_tecnicatura_index')}}">Tecnicatura</a>
 							<a class="collapse-item" href="{{ path('app_asignatura_index')}}">Asignatura</a>
 							<a class="collapse-item" href="{{ path('app_comision_index')}}">Comisiones</a>
 							<a class="collapse-item" href="{{ path('app_correlativa_index')}}">Correlativas</a>
 							<a class="collapse-item" href="{{ path('app_cursada_index')}}">Cursadas</a>
 							<a class="collapse-item" href="{{ path('app_curso_index')}}">Curso</a>
-							<a class="collapse-item" href="{{ path('app_examen_alumno_index')}}">Examen alumno</a>
+							<a class="collapse-item" href="{{ path('app_examen_alumno_index')}}">Examen Alumno</a>
 							<a class="collapse-item" href="{{ path('app_examen_final_index')}}">Examen Final</a>
 							<a class="collapse-item" href="{{ path('app_habilitante_index')}}">Habilitante</a>
-							<a class="collapse-item" href="{{ path('app_inscripcion_final_index')}}">Inscripcion Final</a>
-							<a class="collapse-item" href="{{ path('app_examen_alumno_new')}}">Ingreso de Examen alumno</a>
+							<a class="collapse-item" href="{{ path('app_inscripcion_final_index')}}">Inscripción a Final</a>
+							<a class="collapse-item" href="{{ path('app_examen_alumno_new')}}">Ingreso de Examen Alumno</a>
 							<a class="collapse-item" href="{{ path('app_nota_index')}}">Nota Anual de Alumno</a>
-							<a class="collapse-item" href="{{ path('app_cursada_docente_index')}}">Cursadas Docentes</a>
+							<a class="collapse-item" href="{{ path('app_cursada_docente_index')}}">Cursadas Por Docentes</a>
 							<a class="collapse-item" href="{{ path('app_revista_index')}}">Revista</a>
-							<a class="collapse-item" href="{{ path('app_titulo_index')}}">Titulo</a>
+							<a class="collapse-item" href="{{ path('app_titulo_index')}}">Título</a>
 
 						</div>
 					</div>
@@ -144,7 +147,7 @@
 					</a>
 					<div id="collapseTree" class="collapse" aria-labelledby="headingTree" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<h6 class="collapse-header">Datos de Alumnos</h6>
+							<h6 class="collapse-header">Datos de Personas</h6>
 							<a class="collapse-item" href="{{ path('app_alumno_index')}}">Estudiantes</a>
 							<a class="collapse-item" href="{{ path('app_docente_index')}}">Docentes</a>
 							<a class="collapse-item" href="{{ path('app_persona_index')}}">Personas</a>
@@ -160,17 +163,17 @@
 				<li class="nav-item">
 					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 						<i class="fas fa-fw fa-folder"></i>
-						<span class="custin">Configuracion</span>
+						<span class="custin">Configuración</span>
 					</a>
 					<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
-							<h6 class="collapse-header">Datos institucionles</h6>
+							<h6 class="collapse-header">Datos Institucionales</h6>
 							<a class="collapse-item" href="{{ path('app_instituto_index')}}">Instituto</a>
-							<a class="collapse-item" href="{{ path('app_telefono_index')}}">Telefono</a>
+							<a class="collapse-item" href="{{ path('app_telefono_index')}}">Teléfono</a>
 							<a class="collapse-item" href="{{ path('app_localidad_index') }}">Localidad</a>
-							<a class="collapse-item" href="{{ path('app_region_index')}}">Region</a>
+							<a class="collapse-item" href="{{ path('app_region_index')}}">Región</a>
 							<a class="collapse-item" href="{{ path('app_provincia_index') }}">Provincia</a>
-							<a class="collapse-item" href="{{ path('app_pais_index')}}">Pais</a>
+							<a class="collapse-item" href="{{ path('app_pais_index')}}">Nacionalidad</a>
 							<a class="collapse-item" href="{{ path('app_turno_index') }}">Turnos</a>
 							<a class="collapse-item" href="{{ path('app_modalidad_index') }}">Modalidad</a>					
 						</div>
@@ -208,15 +211,25 @@
 						<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
 							<i class="fa fa-bars"></i>
 						</button>
-				  <div class="super" style="position: absolute; left: 10px; top: 40%; transform: translateY(-50%); display: flex; align-items: center;">
+				  <div class="super" style="position: absolute; left: 25%; top: 44%; transform: translateY(-50%); display: flex; align-items: center;">
 				     	<img class="super" src={{asset('img/logo.jpeg')}} alt="..."style="width: 65px; height: auto;" >
 				</div>
                
-			   <div class="super" style="position: absolute; left: 100px; top: 50%; transform: translateY(-50%); display: flex; align-items: center;">
-						<p class="text-center mb-2">
-						<strong>Bienvenidos</strong>
-					    	al proyecto del i12!</p>
-					</div>
+
+
+
+<!-- Campo de búsqueda de ciclo lectivo -->
+<form class="form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input id="ciclo-lectivo-input" type="text" class="form-control bg-light border-0 small" placeholder="Ciclo Lectivo - Cohorte..." aria-label="Search" aria-describedby="basic-addon2" value="" maxlength="4">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="filtrarPorCicloLectivo()">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
