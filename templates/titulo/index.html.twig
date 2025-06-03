@@ -3,15 +3,15 @@
 {% block title %}Titulo index{% endblock %}
 
 {% block body %}
-    <h1>Titulo index</h1>
+    <h1>Listado de Títulos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Descripcion</th>
-                <th>Institucion</th>
-                <th>actions</th>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Institución</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +21,17 @@
                 <td>{{ titulo.descripcion }}</td>
                 <td>{{ titulo.institucion }}</td>
                 <td>
-                    <a href="{{ path('app_titulo_show', {'id': titulo.id}) }}">show</a>
-                    <a href="{{ path('app_titulo_edit', {'id': titulo.id}) }}">edit</a>
+                    <a href="{{ path('app_titulo_show', {'id': titulo.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_titulo_edit', {'id': titulo.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_titulo_new') }}">Create new</a>
+    <a href="{{ path('app_titulo_new') }}">Agregar Nuevo Título</a>
 {% endblock %}

@@ -42,7 +42,7 @@
 
     // Mostrar botón de regresar
     let backButton = document.createElement('button');
-    backButton.textContent = 'Volver';
+    backButton.textContent = 'Regresar';
     backButton.id = 'dynamicBackButton'; // Le ponemos ID para identificarlo
     backButton.style = "background-color:rgb(61, 85, 235); color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 20px auto; display: block;";
     backButton.onclick = function() {
@@ -309,12 +309,12 @@
     {% endfor %}
 
     <div id="body-vistas">
-        <h1 id="vistas">Central Tecnicaturas y Asignaturas</h1>
+        <h1 id="vistas">Tecnicaturas y Asignaturas</h1>
 
         <div id="searchs" class="search-container">
             <label for="searchNombre">Buscar por Nombre:</label>
             <input type="text" id="searchNombre" onkeyup="filterTableTecnicatura()" placeholder="Buscar por nombre...">
-            <label for="searchResolucion">Buscar por Resolucion:</label>
+            <label for="searchResolucion">Buscar por Resolución:</label>
             <input type="text" id="searchResolucion" onkeyup="filterTableTecnicatura()" placeholder="Buscar por resolucion...">
             <button onclick="openCreateModalTec()" class="button">Crear Tecnicatura</button>
         </div>
@@ -326,7 +326,7 @@
                     <th>Duración</th>
                     <th>Cantidad de Asignaturas</th>
                     <th>Número de Resolución</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -356,7 +356,7 @@
                         <th>
                             <!-- Botón para guardar resolución -->
                             <button id="guardar-resolucion-{{ tecnicatura.id }}" class="btn-primary" onclick="document.getElementById('upload-file-{{ tecnicatura.id }}').click();">
-                                Guardar res
+                                Guardar Resolución
                             </button> 
                             <!-- Formulario oculto -->
                             <form id="upload-form-{{ tecnicatura.id }}" action="{{ path('upload_pdf') }}" method="post" enctype="multipart/form-data" style="display:none;">
@@ -372,9 +372,9 @@
                         </th>
                     </tr>
                     <tr>                  
-                        <th>Año 1</th>
-                        <th>Año 2</th>
-                        <th>Año 3</th>
+                        <th>Primer Año</th>
+                        <th>Segundo Año</th>
+                        <th>Tercer Año</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -3,12 +3,12 @@
 {% block title %}Instituto{% endblock %}
 
 {% block body %}
-    <h1>Instituto</h1>
+    <h1> Mostrando Institutos</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ instituto.id }}</td>
             </tr>
             <tr>
@@ -16,11 +16,11 @@
                 <td>{{ instituto.nombre }}</td>
             </tr>
             <tr>
-                <th>Numero</th>
+                <th>Número</th>
                 <td>{{ instituto.numero }}</td>
             </tr>
             <tr>
-                <th>Url_instituto</th>
+                <th>URL del Instituto</th>
                 <td>{{ instituto.urlInstituto }}</td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                 <td>{{ instituto.tipo }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th>E-Mail</th>
                 <td>{{ instituto.email }}</td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                 <td>{{ instituto.altura }}</td>
             </tr>
             <tr>
-                <th>Numero_cue</th>
+                <th>Número de CUE</th>
                 <td>{{ instituto.numeroCue }}</td>
             </tr>
             <tr>
@@ -50,9 +50,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_instituto_index') }}">back to list</a>
+    <a href="{{ path('app_instituto_index') }}">Regresar</a>
 
-    <a href="{{ path('app_instituto_edit', {'id': instituto.id}) }}">edit</a>
+    <a href="{{ path('app_instituto_edit', {'id': instituto.id}) }}">Editar</a>
 
     {{ include('instituto/_delete_form.html.twig') }}
 {% endblock %}

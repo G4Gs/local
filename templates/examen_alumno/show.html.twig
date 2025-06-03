@@ -3,12 +3,12 @@
 {% block title %}ExamenAlumno{% endblock %}
 
 {% block body %}
-    <h1>ExamenAlumno</h1>
+    <h1>Mostrando Exámenes de Alumnos</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ examen_alumno.id }}</td>
             </tr>
             <tr>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_examen_alumno_index') }}">back to list</a>
+    <a href="{{ path('app_examen_alumno_index') }}">Regresar</a>
 
-    <a href="{{ path('app_examen_alumno_edit', {'id': examen_alumno.id}) }}">edit</a>
+    <a href="{{ path('app_examen_alumno_edit', {'id': examen_alumno.id}) }}">Editar</a>
 
     {{ include('examen_alumno/_delete_form.html.twig') }}
 {% endblock %}

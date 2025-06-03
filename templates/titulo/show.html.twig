@@ -3,28 +3,28 @@
 {% block title %}Titulo{% endblock %}
 
 {% block body %}
-    <h1>Titulo</h1>
+    <h1>Mostrar Títulos</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ titulo.id }}</td>
             </tr>
             <tr>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <td>{{ titulo.descripcion }}</td>
             </tr>
             <tr>
-                <th>Institucion</th>
+                <th>Institución</th>
                 <td>{{ titulo.institucion }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_titulo_index') }}">back to list</a>
+    <a href="{{ path('app_titulo_index') }}">Regresar</a>
 
-    <a href="{{ path('app_titulo_edit', {'id': titulo.id}) }}">edit</a>
+    <a href="{{ path('app_titulo_edit', {'id': titulo.id}) }}">Editar</a>
 
     {{ include('titulo/_delete_form.html.twig') }}
 {% endblock %}

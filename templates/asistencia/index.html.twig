@@ -3,16 +3,16 @@
 {% block title %}Asistencia index{% endblock %}
 
 {% block body %}
-    <h1>Asistencia index</h1>
+    <h1>Listado de Asistencias</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Fecha</th>
                 <th>Asistencia</th>
-                <th>Observacion</th>
-                <th>actions</th>
+                <th>Observación</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,17 @@
                 <td>{{ asistencium.asistencia }}</td>
                 <td>{{ asistencium.observacion }}</td>
                 <td>
-                    <a href="{{ path('app_asistencia_show', {'id': asistencium.id}) }}">show</a>
-                    <a href="{{ path('app_asistencia_edit', {'id': asistencium.id}) }}">edit</a>
+                    <a href="{{ path('app_asistencia_show', {'id': asistencium.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_asistencia_edit', {'id': asistencium.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_asistencia_new') }}">Create new</a>
+    <a href="{{ path('app_asistencia_new') }}">Crear Nueva Asistencia</a>
 {% endblock %}

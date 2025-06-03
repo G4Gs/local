@@ -3,12 +3,12 @@
 {% block title %}Asignatura{% endblock %}
 
 {% block body %}
-    <h1>Asignatura</h1>
+    <h1>Mostrando Asignaturas</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ asignatura.id }}</td>
             </tr>
             <tr>
@@ -16,15 +16,15 @@
                 <td>{{ asignatura.nombre }}</td>
             </tr>
             <tr>
-                <th>Anio</th>
+                <th>Año</th>
                 <td>{{ asignatura.anio }}</td>
             </tr>
             <tr>
-                <th>Modulos</th>
+                <th>Módulos</th>
                 <td>{{ asignatura.cant_mod }}</td>
             </tr>
             <tr>
-                <th>Duracion</th>
+                <th>Duración</th>
                 <td>{{ asignatura.duracion }}</td>
             </tr>
             <tr>
@@ -34,9 +34,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_asignatura_index') }}">back to list</a>
+    <a href="{{ path('app_asignatura_index') }}">Regresar</a>
 
-    <a href="{{ path('app_asignatura_edit', {'id': asignatura.id}) }}">edit</a>
+    <a href="{{ path('app_asignatura_edit', {'id': asignatura.id}) }}">Editar</a>
 
     {{ include('asignatura/_delete_form.html.twig') }}
 {% endblock %}

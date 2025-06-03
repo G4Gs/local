@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Validator as AppAssert;
 
+#[AppAssert\EmailCoincideConPersona]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -20,19 +24,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
-
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $nombre = null;
+    #[ORM\ManyToMany(targetEntity: Rol::class, inversedBy: 'usuarios')]
+    #[ORM\JoinTable(name: 'user_rol')]
+    private Collection $roles;
 
-    #[ORM\Column(length: 50)]
-    private ?string $apellido = null;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Persona $Persona = null;
+
+
+    public function __construct()
+    {
+        $this->roles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -47,50 +52,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
+    /** @deprecated since Symfony 5.3, use getUserIdentifier instead */
     public function getUsername(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): static
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -99,52 +74,67 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
-    /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
-     */
     public function getSalt(): ?string
     {
         return null;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
-    public function getNombre(): ?string
+    public function getRoles(): array
     {
-        return $this->nombre;
+        $roles = $this->roles->map(fn(Rol $rol) => $rol->getNombre())->toArray();
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
-    public function setNombre(string $nombre): static
+    public function addRol(Rol $rol): static
     {
-        $this->nombre = $nombre;
+        if (!$this->roles->contains($rol)) {
+            $this->roles[] = $rol;
+        }
+        return $this;
+    }
+
+    public function removeRol(Rol $rol): static
+    {
+        $this->roles->removeElement($rol);
+        return $this;
+    }
+
+    public function getRolesCollection(): Collection
+    {
+        return $this->roles;
+    }
+
+    public function setRolesCollection(Collection $roles): static
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->email ?? '';
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->Persona;
+    }
+
+    public function setPersona(?Persona $Persona): static
+    {
+        $this->Persona = $Persona;
 
         return $this;
     }
 
-    public function getApellido(): ?string
-    {
-        return $this->apellido;
-    }
-
-    public function setApellido(string $apellido): static
-    {
-        $this->apellido = $apellido;
-
-        return $this;
-    }
-
+  
 }

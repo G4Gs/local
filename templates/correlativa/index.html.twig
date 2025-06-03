@@ -3,13 +3,13 @@
 {% block title %}Correlativa index{% endblock %}
 
 {% block body %}
-    <h1>Correlativa index</h1>
+    <h1>Listado de Correlativas</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>actions</th>
+                <th>ID</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -17,17 +17,17 @@
             <tr>
                 <td>{{ correlativa.id }}</td>
                 <td>
-                    <a href="{{ path('app_correlativa_show', {'id': correlativa.id}) }}">show</a>
-                    <a href="{{ path('app_correlativa_edit', {'id': correlativa.id}) }}">edit</a>
+                    <a href="{{ path('app_correlativa_show', {'id': correlativa.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_correlativa_edit', {'id': correlativa.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="2">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_correlativa_new') }}">Create new</a>
+    <a href="{{ path('app_correlativa_new') }}">Crear Nueva Correlativa</a>
 {% endblock %}

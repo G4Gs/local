@@ -81,7 +81,7 @@
                     <body>
                         <h1><strong>Estudiante:</strong> ${alumno.persona.apellido} ${alumno.persona.nombre} DNI:${alumno.persona.dniPasaporte}</h1>
                         <h1><strong>TECNICATURA SUPERIOR EN </strong> ${carreraNombre}</h1>
-                        <h1>Situacion academica al día: ${new Date().toLocaleString()}</h1>
+                        <h1>Situacion académica al día ${new Date().toLocaleString()}</h1>
                         
                         ${tableClone.outerHTML}
                         <p>La presente certificación deberá contar con sello y firma de las autoridades de la institución para tener validez.</p>
@@ -336,13 +336,13 @@
 
 {% block body %}
     <div id="body-vistas">
-        <h1>Gestión de tu/s Carrera/s</h1>
+        <h1>Menú de Gestión del Estudiante</h1>
         <table id="tablacarrera" class="tabla_home" style="display: ;" border="1">
             <thead>
                 <tr>
                     <th>Estudiante</th>
                     <th>Carrera</th>
-                    <th>Ir</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -370,23 +370,23 @@
                         <button onclick="openModal1()">Mis Datos</button> 
                         <button id="botonImprimir" onclick="imprimirTable('tablaCarreraEnCurso')">Imprimir certificado</button>  
                         <button id="cursadaMia" onclick="openCursosModal()">Inscripción a Cursada</button>                  
-                        <button id="finalMio"  onclick="openModal('final')">Inscripcion a final</button>                       
+                        <button id="finalMio"  onclick="openModal('final')">Inscripción a Final</button>                       
                         <button id="claveMia"  onclick="openModal('clave')">Cambiar Clave</button> 
                     </th>
                 </tr>
                 <tr>
                     <th>Asignatura</th>
                     <th>Año</th>
-                    <th>Ciclo</th>
-                    <th>Comision</th>
-                    <th>Parcial</th>
-                    <th>Recup</th>
-                    <th>Parcial2</th>
-                    <th>Recup2</th>
+                    <th>Ciclo Lectivo</th>
+                    <th>Comisión</th>
+                    <th>Primer Parcial</th>
+                    <th>Primer Recuperatorio</th>
+                    <th>Segundo Parcial</th>
+                    <th>Segundo Recuperatorio</th>
                     <th>Cursada</th>
                     <th>Equivalencia</th>
                     <th>Nota Final</th>
-                    <th>Fecha Final</th>
+                    <th>Fecha de Final</th>
                     <th>Tomo</th>
                     <th>Folio</th>
                 </tr>
@@ -400,7 +400,7 @@
                             <tr data-carrera-id="{{ carrera.id }}">
                                 <td>{{ curso.asignatura.nombre }}</td>
                                 <td>{{ curso.asignatura.anio }}</td>
-                                <td>{{ curso.ciclolectivo }}</td>
+                                <td>{{ curso.comision.ciclolectivo }}</td>
                                 <td>{{ curso.comision }}</td>
                                 <td>{{ cursada.getNotaId().parcial }}</td>
                                 <td>{{ cursada.getNotaId().recuperatorio1 }}</td>
@@ -461,7 +461,7 @@
                         <label class="miinfo2 apellido"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Fecha Nacimiento:</label>
+                        <label class="miinfo">Fecha de Nacimiento:</label>
                         <label class="miinfo2 fechaNacimiento"></label>
                     </div>
                     <div class="info-pair">
@@ -469,15 +469,15 @@
                         <label class="miinfo2 dniPasaporte"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Genero:</label>
+                        <label class="miinfo">Género:</label>
                         <label class="miinfo2 genero"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Email:</label>
+                        <label class="miinfo">E-Mail:</label>
                         <label class="miinfo2 email"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Telefono:</label>
+                        <label class="miinfo">Teléfono:</label>
                         <label class="miinfo2 telefono"></label>
                     </div>
                     <div class="info-pair">
@@ -489,7 +489,7 @@
                         <label class="miinfo2 calle"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Numero:</label>
+                        <label class="miinfo">Número:</label>
                         <label class="miinfo2 numero"></label>
                     </div>
                     <div class="info-pair">
@@ -513,11 +513,11 @@
                         <label class="miinfo2 localidad"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Titulo Secundaria:</label>
+                        <label class="miinfo">Título Secundaria:</label>
                         <label class="miinfo2 tituloSec"></label>
                     </div>
                     <div class="info-pair">
-                        <label class="miinfo">Escuela:</label>
+                        <label class="miinfo">Escuela Secundaria:</label>
                         <label class="miinfo2 escuelaSec"></label>
                     </div>
                     <div class="info-pair">
@@ -623,7 +623,7 @@
                         document.getElementById('modalClave').innerHTML = html;
                         document.getElementById('claveModal').style.display = 'block';
 
-                        //user_email     user_roles       user_password_frist (el primer pass)
+                        //user_email     user_roles       user_password_first (el primer pass)
                         //user_password_second (repetir el pass) user_nombre user_apellido
                         
                         const rolInput = document.getElementById('user_roles');                 

@@ -5,7 +5,7 @@
             <th>Año</th>
             <th>Ciclo</th>
             <th>Comisión</th>
-            <th>Acción</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ curso.asignatura.nombre }}</td>
                 <td>{{ curso.asignatura.anio }}</td>
-                <td>{{ curso.ciclolectivo }}</td>
+                <td>{{ curso.comision.ciclolectivo }}</td>
                 <td>{{ curso.comision }}</td>
                 <td>     
                     {#crear cursada para el alumno del curso seleccionado#}

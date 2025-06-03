@@ -61,6 +61,8 @@ class Persona
     #[ORM\JoinColumn(nullable: false)]
     private ?Localidad $localidad = null;
 
+ 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,7 +76,6 @@ class Persona
     public function setNombre(string $nombre): static
     {
         $this->nombre = $nombre;
-
         return $this;
     }
 
@@ -86,7 +87,6 @@ class Persona
     public function setApellido(string $apellido): static
     {
         $this->apellido = $apellido;
-
         return $this;
     }
 
@@ -98,7 +98,6 @@ class Persona
     public function setFechaNacimiento(\DateTimeInterface $fecha_nacimiento): static
     {
         $this->fecha_nacimiento = $fecha_nacimiento;
-
         return $this;
     }
 
@@ -110,7 +109,6 @@ class Persona
     public function setDniPasaporte(string $dni_pasaporte): static
     {
         $this->dni_pasaporte = $dni_pasaporte;
-
         return $this;
     }
 
@@ -122,7 +120,6 @@ class Persona
     public function setGenero(string $genero): static
     {
         $this->genero = $genero;
-
         return $this;
     }
 
@@ -134,7 +131,6 @@ class Persona
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -146,10 +142,8 @@ class Persona
     public function setTelefono(?string $telefono): static
     {
         $this->telefono = $telefono;
-
         return $this;
     }
-
 
     public function getPartido(): ?string
     {
@@ -159,7 +153,6 @@ class Persona
     public function setPartido(string $partido): static
     {
         $this->partido = $partido;
-
         return $this;
     }
 
@@ -171,7 +164,6 @@ class Persona
     public function setCalle(string $calle): static
     {
         $this->calle = $calle;
-
         return $this;
     }
 
@@ -183,7 +175,6 @@ class Persona
     public function setNumero(?string $numero): static
     {
         $this->numero = $numero;
-
         return $this;
     }
 
@@ -195,7 +186,6 @@ class Persona
     public function setPiso(?int $piso): static
     {
         $this->piso = $piso;
-
         return $this;
     }
 
@@ -207,7 +197,6 @@ class Persona
     public function setDepartamento(?string $departamento): static
     {
         $this->departamento = $departamento;
-
         return $this;
     }
 
@@ -219,7 +208,6 @@ class Persona
     public function setPasillo(?string $pasillo): static
     {
         $this->pasillo = $pasillo;
-
         return $this;
     }
 
@@ -231,7 +219,6 @@ class Persona
     public function setPais(?Pais $pais): static
     {
         $this->pais = $pais;
-
         return $this;
     }
 
@@ -243,10 +230,10 @@ class Persona
     public function setLocalidad(?Localidad $localidad): static
     {
         $this->localidad = $localidad;
-
         return $this;
     }
 
+  
 
     public function __toString(): string
     {
@@ -256,5 +243,4 @@ class Persona
             return 'Sin información de persona';
         }
     }
-
 }

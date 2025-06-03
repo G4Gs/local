@@ -4,12 +4,12 @@
     'action': path('crear_cursada_docente', { 'curso_id': cursoId })
 }) }}
 
-        {{ form_row(form.toma) }}
-        {{ form_row(form.cese) }}
-        {{ form_row(form.docente) }}
-        {{ form_row(form.revista) }}
-        {{ form_row(form.licencia) }}
-        {{ form_row(form.curso) }}
+        {{ form_row(form.toma, {'label': 'Fecha de Toma'})}}
+        {{ form_row(form.cese, {'label': 'Fecha de Cese'})}}
+        {{ form_row(form.docente, {'label': 'Docente'})}}
+        {{ form_row(form.revista, {'label': 'Situación de Revista'})}}
+        {{ form_row(form.licencia, {'label': 'Licencia'})}}
+        {{ form_row(form.curso, {'label': 'Curso'})}}
     <button type="submit"class="button">Guardar</button>
 {{ form_end(form) }}
  

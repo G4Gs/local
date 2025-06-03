@@ -3,15 +3,15 @@
 {% block title %}Localidad index{% endblock %}
 
 {% block body %}
-    <h1>Localidad index</h1>
+    <h1>Listado de Localidades</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nombre</th>
-                <th>Codigo_postal</th>
-                <th>actions</th>
+                <th>Código Postal</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +21,17 @@
                 <td>{{ localidad.nombre }}</td>
                 <td>{{ localidad.codigoPostal }}</td>
                 <td>
-                    <a href="{{ path('app_localidad_show', {'id': localidad.id}) }}">show</a>
-                    <a href="{{ path('app_localidad_edit', {'id': localidad.id}) }}">edit</a>
+                    <a href="{{ path('app_localidad_show', {'id': localidad.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_localidad_edit', {'id': localidad.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_localidad_new') }}">Create new</a>
+    <a href="{{ path('app_localidad_new') }}">Incorporar Nueva Localidad</a>
 {% endblock %}

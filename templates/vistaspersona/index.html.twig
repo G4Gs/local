@@ -46,7 +46,7 @@
             }
         }
 
-       function openModal1() {
+        function openModal1() {
             const url = "{{ path('crear_persona') }}";
             // Realizar la solicitud fetch
             fetch(url)
@@ -58,6 +58,7 @@
                 })  
                 .catch(error => console.error('Error al cargar el formulario de edición:', error));
         }
+
 
         function openModal2() {
             const url = "{{ path('crear_docente') }}";
@@ -88,7 +89,6 @@
         }
 
 
-        //CREAR ESTUDIANTE
         function openModal3() {
             const url = "{{ path('crear_alumno') }}";
             // Realizar la solicitud fetch
@@ -147,7 +147,6 @@
         }
 
         
-        //EDITAR ALUMNO
         function openModal4(AluId) {
             // Generar la URL con los IDs correctos
             const url = "{{ path('editar_alumno', { 'id': '__id__' }) }}"
@@ -175,7 +174,6 @@
                 .catch(error => console.error('Error al cargar el formulario de edición:', error));
         }
 
-        //EDITAR DOCENTE
         function openModal5(DocId) {
             // Generar la URL con los IDs correctos
             const url = "{{ path('editar_docente', { 'id': '__id__' }) }}"
@@ -202,7 +200,6 @@
         }
 
         
-        //EDITAR PERSONA
         function openModal6(PerId) {
             // Generar la URL con los IDs correctos
             const url = "{{ path('editar_persona', { 'id': '__id__' }) }}"
@@ -219,7 +216,7 @@
                 .catch(error => console.error('Error al cargar el formulario de edición:', error));
         }
 
-        //EDITAR Carrera/s
+
         function openModal7(CarrId) {
             // Generar la URL con los IDs correctos
             const url = "{{ path('editar_carreras', { 'id': '__id__' }) }}"
@@ -441,14 +438,14 @@
 {% block body %}
 
     <div id="body-vistas">
-        <h1 id="vistas">Central Recursos Humanos</h1>
+        <h1 id="vistas">Recursos Humanos</h1>
         <table class="tabla_home" id="tablaTecnicaturas" border="1">
             <thead>
                 <tr>
                     <th>Personas</th>
                     <th>Docentes</th>
                     <th>Estudiantes</th>
-                    <th>CarreraXestudiante</th>
+                    <th>CarreraXEstudiante</th>
                 </tr>
             </thead>
             <tbody>
@@ -484,16 +481,16 @@
             <thead>
                 <tr>
                     <th colspan="4">
-                        <input type="text" id="searchNombre" onkeyup="filterNombre()" placeholder="Buscar Nombre...">
-                        <input type="text" id="searchApellido" onkeyup="filterApellido()" placeholder="Buscar Apellido...">
-                        <input type="text" id="searchDNI" onkeyup="filterDNI()" placeholder="Buscar DNI...">
+                        <input type="text" id="searchNombre" onkeyup="filterNombre()" placeholder="Buscar por Nombre">
+                        <input type="text" id="searchApellido" onkeyup="filterApellido()" placeholder="Buscar por Apellido">
+                        <input type="text" id="searchDNI" onkeyup="filterDNI()" placeholder="Buscar por DNI">
                     </th>
                 </tr>
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Dni_pasaporte</th>
-                    <th>actions</th>
+                    <th>Dni/Pasaporte</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -508,7 +505,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="15">no records found</td>
+                    <td colspan="15">No se encontraron registros</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -519,14 +516,14 @@
             <thead>
                 <tr>
                     <th colspan="3">
-                        Apellido Nombre (DNI/Pasaporte)
+                        Buscar Docente por Nombre, Apellido o DNI
                         <input type="text" id="searchDocente" onkeyup="filterDocenteaqui()" placeholder="Buscar Docente...">
                     </th>
                 </tr>
                 <tr>
                     <th>Docente</th>
                     <th>Foja</th>
-                    <th>actions</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -540,7 +537,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">no records found</td>
+                    <td colspan="3">No se encontraron registros</td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -552,16 +549,16 @@
             <thead>
                 <tr>
                     <th colspan="5">
-                        Apellido Nombre (DNI/Pasaporte)
+                        Buscar Estudiante por Nombre, Apellido o DNI
                         <input type="text" id="searchAlumno" onkeyup="filterAlumnoaqui()" placeholder="Buscar Estudiante...">
                     </th>
                 </tr>
                 <tr>
                     <th>Estudiante</th>
-                    <th>Titulo_sec</th>
-                    <th>Escuela_sec</th>
-                    <th>Anio_egreso</th>
-                    <th>actions</th>
+                    <th>Título Secundaria</th>
+                    <th>Escuela Secundaria</th>
+                    <th>Año de Egreso</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -588,7 +585,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Apellido Nombre (DNI/Pasaporte)
+                        Buscar Estudiante por Nombre, Apellido o DNI
                         <input type="text" id="searchAlumno2" onkeyup="filterAlumno2aqui()" placeholder="Buscar Estudiante...">
                     </th>
                 </tr>
@@ -598,7 +595,7 @@
                     <th>Estado</th>
                     <th>Inicio</th>
                     <th>Fin</th>
-                    <th>Editar</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -640,7 +637,7 @@
             <div class="modal-content">
                 <div id="modal-cursadas">
                     <div id="searchsEs" class="search-container">
-                        <label for="searchEstudiante">Buscar Persona:</label>
+                        <h6><label for="searchEstudiante">Buscar Persona:</label><h\6>
                         <input type="text" id="searchEstudiante" onkeyup="filterEstudiante()" placeholder="Buscar persona...">
                     </div>
                     <div class="modal-content2">
@@ -656,7 +653,7 @@
             <div class="modal-content">
                 <div id="modal-cursadas">
                     <div id="searchsEs" class="search-container">
-                        <label for="searchDocente">Buscar Persona:</label>
+                        <h6><label for="searchDocente">Buscar Persona:</label><\h6>
                         <input type="text" id="searchDocente" onkeyup="filterDocente()" placeholder="Buscar persona...">
                     </div>
                     <div class="modal-content3">
@@ -672,9 +669,10 @@
             <div class="modal-content">
                 <div id="modal-cursadas">
                     <div id="searchsEs" class="search-container">
-                        <input type="text" id="searchCarrerasEstudiantes" onkeyup="filterCestudiantes()" placeholder="Buscar estudiante...">
-
-                        <input type="text" id="searchCarrerasTecnicaturas" onkeyup="filterCtecnicaturas()" placeholder="Buscar tecnicatura...">
+                        <h6><label for="searchCarrerasEstudiantes">Buscar Estudiante:</label><\h6>
+                        <h6><input type="text" id="searchCarrerasEstudiantes" onkeyup="filterCestudiantes()" placeholder="Buscar estudiante..."><\h6>
+                        <h6><label for="searchCarrerasEstudiantes">Buscar Tecnicatura:</label><\h6>
+                        <h6><input type="text" id="searchCarrerasTecnicaturas" onkeyup="filterCtecnicaturas()" placeholder="Buscar tecnicatura..."><\h6>
                     </div>
                     <div class="modal-content4">
                         <span class="close" onclick="closeModal4()">&times;</span>
@@ -684,6 +682,6 @@
             </div>    
         </div>
 
-        <button id="backButton" style="display: none;" class="btn-primary">VOLVER</button>
+        <button id="backButton" style="display: none;" class="btn-primary">Regresar</button>
     </div>
 {% endblock %}

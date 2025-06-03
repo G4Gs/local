@@ -3,11 +3,11 @@
 {% block title %}Edit Telefono{% endblock %}
 
 {% block body %}
-    <h1>Edit Telefono</h1>
+    <h1>Editar Teléfono</h1>
 
-    {{ include('telefono/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('telefono/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_telefono_index') }}">back to list</a>
+    <a href="{{ path('app_telefono_index') }}">Regresar</a>
 
     {{ include('telefono/_delete_form.html.twig') }}
 {% endblock %}

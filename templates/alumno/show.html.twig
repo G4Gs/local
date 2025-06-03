@@ -3,29 +3,30 @@
 {% block title %}Alumno{% endblock %}
 
 {% block body %}
-    <h1>Alumno</h1>
+    <h1>Mostrando Estudiantes</h1>
 
     <table class="table">
         <tbody>
          
             <tr>
-                <th>Titulo_sec</th>
+                <th>Título Secundaria</th>
                 <td>{{ alumno.tituloSec }}</td>
             </tr>
             <tr>
-                <th>Escuela_sec</th>
+                <th>Escuela Secundaria</th>
                 <td>{{ alumno.escuelaSec }}</td>
             </tr>
             <tr>
-                <th>Anio_egreso</th>
+                <th>Año de Egreso</th>
                 <td>{{ alumno.anioEgreso }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_alumno_index') }}">Volver</a>
+    <a href="{{ path('app_alumno_index') }}">Regresar</a>
 
+    <h5> </h5>
     <a href="{{ path('app_alumno_edit', {'id': alumno.id}) }}">Editar</a>
 
-    {{ include('alumno/_delete_form.html.twig') }}
+ {{ include('alumno/_delete_form.html.twig') }}
 {% endblock %}

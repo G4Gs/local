@@ -3,12 +3,12 @@
 {% block title %}Localidad{% endblock %}
 
 {% block body %}
-    <h1>Localidad</h1>
+    <h1>Mostrando Localidades</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ localidad.id }}</td>
             </tr>
             <tr>
@@ -16,15 +16,15 @@
                 <td>{{ localidad.nombre }}</td>
             </tr>
             <tr>
-                <th>Codigo_postal</th>
+                <th>Código Postal</th>
                 <td>{{ localidad.codigoPostal }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_localidad_index') }}">back to list</a>
+    <a href="{{ path('app_localidad_index') }}">Regresar</a>
 
-    <a href="{{ path('app_localidad_edit', {'id': localidad.id}) }}">edit</a>
+    <a href="{{ path('app_localidad_edit', {'id': localidad.id}) }}">Editar</a>
 
     {{ include('localidad/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,87 +3,75 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Rol;
+use App\Entity\Persona;
+use App\Form\PersonaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email', null, [
-            'attr' => [
-                'class' => 'home-input' // Clase CSS para el input
-            ],
-            'label_attr' => [
-                'class' => 'home-label' // Clase CSS para el label
-            ]
-        ])
-       // ->add('roles')
-       // ->add('password')
-        ->add('nombre', null, [
-            'attr' => [
-                'class' => 'home-input' // Clase CSS para el input
-            ],
-            'label_attr' => [
-                'class' => 'home-label' // Clase CSS para el label
-            ]
-        ])
-        ->add('apellido', null, [
-            'attr' => [
-                'class' => 'home-input' // Clase CSS para el input
-            ],
-            'label_attr' => [
-                'class' => 'home-label' // Clase CSS para el label
-            ]
-        ])
-
-         //rempllazo roles y pasword por lo siguiente:
-
-         ->add('roles', ChoiceType::class, [
-             'choices' => [
-                 'Usuario'=> 'ROLE_USER',
-                 'Administrador'=> 'ROLE_SUPER_ADMIN',  #administrador con acceso total a todas las funciones
-                 'Directivo'=> 'ROLE_ADMIN', #usuarios como preceptores q no tendran acceso a todas las opciones
-                 'Docente' => 'ROLE_DOCENTE',  #acceso a las funciones de DOCENTES
-                 'Estudiante' => 'ROLE_ESTUDIANTE',  #acceo a los ESTUDIANTES
-             ],
-             'expanded' => false,  // Usa select en lugar de radio buttons
-             'multiple' => true,   // Permite seleccionar múltiples roles
-             'label' => '* Roles',
-             'attr' => [
-                 'class' => 'home-input'  // Clase CSS para el select o los checkboxes/radio buttons
-             ],
-             'label_attr' => [
-                 'class' => 'home-label'  // Clase CSS para la etiqueta
-             ]
-         ])
-         ->add('password', RepeatedType::class, [
-            'type' => PasswordType::class,
-            'first_options' => [
-                'label' => '* Password',
-                'attr' => [
-                    'class' => 'home-input'  // Clase CSS para el primer input
+            ->add('email', null, [
+                'attr' => ['class' => 'home-input'],
+                'label_attr' => ['class' => 'home-label'],
+                'constraints' => [
+                    new NotBlank(['message' => 'El correo es obligatorio.']),
+                    new Email(['message' => 'Ingrese un correo válido.']),
                 ],
-                'label_attr' => [
-                    'class' => 'home-label'  // Clase CSS para el primer label
-                ]
-            ],
-            'second_options' => [
-                'label' => '* Repetir Password',
-                'attr' => [
-                    'class' => 'home-input'  // Clase CSS para el segundo input
-                ],
-                'label_attr' => [
-                    'class' => 'home-label'  // Clase CSS para el segundo label
-                ]
-            ]
-        ])
+            ])
+           ->add('roles', EntityType::class, [
+                'class' => Rol::class,
+                'choice_label' => 'nombre',
+                'multiple' => true,
+                'expanded' => false,
+                'by_reference' => false,
+                'property_path' => 'rolesCollection', // para usar getRolesCollection() y setRolesCollection()
+            ])
 
+           ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'required' => false,
+                'invalid_message' => 'Las contraseñas no coinciden.',
+                'first_options' => [
+                    'label' => '* Password',
+                    'attr' => ['class' => 'home-input'],
+                    'label_attr' => ['class' => 'home-label'],
+                    'constraints' => [
+                        new NotBlank(['message' => 'La contraseña no puede estar vacía.']),
+                        new \Symfony\Component\Validator\Constraints\Length([
+                            'min' => 6,
+                            'minMessage' => 'La contraseña debe tener al menos {{ limit }} caracteres.',
+                            'max' => 4096,
+                        ]),
+                    ],
+                ],
+                'second_options' => [
+                    'label' => '* Repetir Password',
+                    'attr' => ['class' => 'home-input'],
+                    'label_attr' => ['class' => 'home-label'],
+                ],
+            ])
+
+           ->add('persona', EntityType::class, [
+                    'class' => Persona::class,
+                    'choice_label' => function (Persona $persona) {
+                        // Por ejemplo, muestra el nombre completo u otro campo
+                        return $persona->getNombre() . ' ' . $persona->getApellido();
+                    },
+                    'placeholder' => 'Seleccione una persona',
+                    'required' => false,
+                    'attr' => ['class' => 'home-input'],
+                    'label_attr' => ['class' => 'home-label'],
+                ])
         ;
     }
 

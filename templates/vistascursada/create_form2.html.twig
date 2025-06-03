@@ -2,11 +2,11 @@
     'attr': {'id': 'form-crea-cursada'},
     'action': path('crear_cursada', { 'tecnicatura_id': tecId, 'comision_id': comId })
 }) }}
-        {{ form_row(form.condicion) }}
-        {{ form_row(form.alumno) }}
-        {{ form_row(form.modalidad) }}
-        {{ form_row(form.nota_id) }}
-        {{ form_row(form.curso) }} 
+        {{ form_row(form.condicion, {'label': 'Condición'})  }}
+        {{ form_row(form.alumno, {'label': 'Alumno'})  }}
+        {{ form_row(form.modalidad, {'label': 'Modalidad'})  }}
+        {{ form_row(form.nota_id, {'label': 'Nota'})  }}
+        {{ form_row(form.curso, {'label': 'Curso'})  }} 
     <button type="submit"class="button">Guardar</button>
 {{ form_end(form) }}
 

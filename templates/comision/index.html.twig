@@ -3,16 +3,16 @@
 {% block title %}Comision index{% endblock %}
 
 {% block body %}
-    <h1>Comision index</h1>
+    <h1>Listado de Comisiones</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Anio</th>
-                <th>Comision</th>
+                <th>ID</th>
+                <th>Año</th>
+                <th>Comisión</th>
                 <th>Estado</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,17 @@
                 <td>{{ comision.comision }}</td>
                  <td>{{ comision.estado }}</td>
                 <td>
-                    <a href="{{ path('app_comision_show', {'id': comision.id}) }}">show</a>
-                    <a href="{{ path('app_comision_edit', {'id': comision.id}) }}">edit</a>
+                    <a href="{{ path('app_comision_show', {'id': comision.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_comision_edit', {'id': comision.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_comision_new') }}">Create new</a>
+    <a href="{{ path('app_comision_new') }}">Crear Nueva Comisión</a>
 {% endblock %}

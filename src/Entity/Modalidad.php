@@ -21,9 +21,13 @@ class Modalidad
     #[ORM\OneToMany(mappedBy: 'modalidad', targetEntity: Cursada::class)]
     private Collection $cursada;
 
+    #[ORM\OneToMany(mappedBy: 'Modalidad', targetEntity: CalendarioClase::class)]
+    private Collection $calendarioClases;
+
     public function __construct()
     {
         $this->cursada = new ArrayCollection();
+        $this->calendarioClases = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,5 +79,35 @@ class Modalidad
     public function __toString(): string
     {
         return $this->descripcion ;
+    }
+
+    /**
+     * @return Collection<int, CalendarioClase>
+     */
+    public function getCalendarioClases(): Collection
+    {
+        return $this->calendarioClases;
+    }
+
+    public function addCalendarioClase(CalendarioClase $calendarioClase): static
+    {
+        if (!$this->calendarioClases->contains($calendarioClase)) {
+            $this->calendarioClases->add($calendarioClase);
+            $calendarioClase->setModalidad($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendarioClase(CalendarioClase $calendarioClase): static
+    {
+        if ($this->calendarioClases->removeElement($calendarioClase)) {
+            // set the owning side to null (unless already changed)
+            if ($calendarioClase->getModalidad() === $this) {
+                $calendarioClase->setModalidad(null);
+            }
+        }
+
+        return $this;
     }
 }

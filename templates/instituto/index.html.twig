@@ -3,22 +3,22 @@
 {% block title %}Instituto index{% endblock %}
 
 {% block body %}
-    <h1>Instituto index</h1>
+    <h1>Listado de Institutos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nombre</th>
-                <th>Numero</th>
-                <th>Url_instituto</th>
+                <th>Número</th>
+                <th>URL del Instituto</th>
                 <th>Tipo</th>
-                <th>Email</th>
+                <th>E-Mail</th>
                 <th>Calle</th>
                 <th>Altura</th>
-                <th>Numero_cue</th>
+                <th>Número de CUE</th>
                 <th>Instituto</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -35,17 +35,17 @@
                 <td>{{ instituto.numeroCue }}</td>
                 <td>{{ instituto.instituto }}</td>
                 <td>
-                    <a href="{{ path('app_instituto_show', {'id': instituto.id}) }}">show</a>
-                    <a href="{{ path('app_instituto_edit', {'id': instituto.id}) }}">edit</a>
+                    <a href="{{ path('app_instituto_show', {'id': instituto.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_instituto_edit', {'id': instituto.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_instituto_new') }}">Create new</a>
+    <a href="{{ path('app_instituto_new') }}">Crear Nuevo Instituto</a>
 {% endblock %}

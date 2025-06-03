@@ -3,14 +3,14 @@
 {% block title %}InscripcionFinal index{% endblock %}
 
 {% block body %}
-    <h1>InscripcionFinal index</h1>
+    <h1>Listado de Inscripciones a Finales</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Fecha</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,17 +19,17 @@
                 <td>{{ inscripcion_final.id }}</td>
                 <td>{{ inscripcion_final.fecha ? inscripcion_final.fecha|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_inscripcion_final_show', {'id': inscripcion_final.id}) }}">show</a>
-                    <a href="{{ path('app_inscripcion_final_edit', {'id': inscripcion_final.id}) }}">edit</a>
+                    <a href="{{ path('app_inscripcion_final_show', {'id': inscripcion_final.id}) }}">Mostrar</a>
+                    <a href="{{ path('app_inscripcion_final_edit', {'id': inscripcion_final.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">No se encontraron registros</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_inscripcion_final_new') }}">Create new</a>
+    <a href="{{ path('app_inscripcion_final_new') }}">Crear Nueva Inscripción a Final</a>
 {% endblock %}
